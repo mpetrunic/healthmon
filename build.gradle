@@ -52,9 +52,15 @@ processResources {
 	filter ReplaceTokens, tokens: [
 			"active_profile": profile
 	]
-	exclude "**/node_modules/*"
-	exclude "node_modules/*"
-	exclude "*/node_modules/*"
+	exclude "angular-app/*"
+}
+
+sourceSets {
+	main {
+		resources {
+			exclude '**/angular-app/*'
+		}
+	}
 }
 
 task staging << {
