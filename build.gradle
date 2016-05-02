@@ -54,6 +54,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.flywaydb:flyway-core:${project.ext.flywayVersion}")
 	compile('mysql:mysql-connector-java')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.4')
 	compile('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
