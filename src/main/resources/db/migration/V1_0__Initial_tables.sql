@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` VARCHAR(45) NOT NULL,
   `surname` VARCHAR(45) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
-  `insert_date` DATETIME NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` VARCHAR(60) NOT NULL,
   `location_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `fk_user_LOCATION1`
   FOREIGN KEY (`location_id`)
   REFERENCES `location` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
   ENGINE = InnoDB;
 
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `environment_statistic` (
   `temperature` FLOAT NULL,
   `humidity` FLOAT NULL,
   `air_pressure` INT NULL,
-  `insert_date` DATETIME NULL,
+  `insert_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `location_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `ID_UNIQUE` (`id` ASC),
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `environment_statistic` (
   CONSTRAINT `fk_ENVIROMENT_STATISTIC_LOCATION1`
   FOREIGN KEY (`location_id`)
   REFERENCES `location` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
   ENGINE = InnoDB;
 
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `user_meal` (
   `user_meal_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `meal_type_id` INT NOT NULL,
-  `insert_date` DATE NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `meal_id` INT NOT NULL,
   PRIMARY KEY (`user_meal_id`),
   UNIQUE INDEX `ID_UNIQUE` (`user_meal_id` ASC),
@@ -101,18 +101,18 @@ CREATE TABLE IF NOT EXISTS `user_meal` (
   CONSTRAINT `fk_USER_MEAL_USER1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_USER_MEAL_MEAL_TYPE1`
   FOREIGN KEY (`meal_type_id`)
   REFERENCES `meal_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_USER_MEAL_meal1`
   FOREIGN KEY (`meal_id`)
   REFERENCES `meal` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
   ENGINE = InnoDB;
 
 
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `user_activity` (
   `user_activity_id` INT NOT NULL AUTO_INCREMENT,
   `calories_burned` INT NOT NULL,
   `activity_lenght` DOUBLE NOT NULL,
-  `insert_date` DATETIME NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   `activity_id` INT NOT NULL,
   PRIMARY KEY (`user_activity_id`),
@@ -145,13 +145,13 @@ CREATE TABLE IF NOT EXISTS `user_activity` (
   CONSTRAINT `fk_USER_ACTIVITY_USER1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_user_activity_activity1`
   FOREIGN KEY (`activity_id`)
   REFERENCES `activity` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
   ENGINE = InnoDB;
 
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `user_activity` (
 CREATE TABLE IF NOT EXISTS `user_weight` (
   `user_weight_id` INT NOT NULL AUTO_INCREMENT,
   `weight` INT NOT NULL,
-  `insert_date` DATETIME NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`user_weight_id`),
   UNIQUE INDEX `USER_WEIGHT_ID_UNIQUE` (`user_weight_id` ASC),
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `user_weight` (
   CONSTRAINT `fk_user_weight_USER1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
   ENGINE = InnoDB;
 
 
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `user_weight` (
 CREATE TABLE IF NOT EXISTS `user_temperature` (
   `user_temperature_id` INT NOT NULL AUTO_INCREMENT,
   `temperature` FLOAT NOT NULL,
-  `insert_date` DATETIME NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`user_temperature_id`),
   UNIQUE INDEX `user_temperature_id_UNIQUE` (`user_temperature_id` ASC),
@@ -188,8 +188,8 @@ CREATE TABLE IF NOT EXISTS `user_temperature` (
   CONSTRAINT `fk_user_temperature_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
   ENGINE = InnoDB;
 
 
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `user_temperature` (
 CREATE TABLE IF NOT EXISTS `user_heart_rate` (
   `user_heart_rate_id` INT NOT NULL AUTO_INCREMENT,
   `heart_rate` INT NOT NULL,
-  `insert_date` DATETIME NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`user_heart_rate_id`),
   UNIQUE INDEX `user_heart_rate_id_UNIQUE` (`user_heart_rate_id` ASC),
@@ -207,8 +207,8 @@ CREATE TABLE IF NOT EXISTS `user_heart_rate` (
   CONSTRAINT `fk_user_heart_rate_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE )
   ENGINE = InnoDB;
 
 
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `user_blood_pressure` (
   `user_blood_pressure_id` INT NOT NULL AUTO_INCREMENT,
   `diastolic` INT NOT NULL,
   `systolic` INT NOT NULL,
-  `insert_date` DATETIME NOT NULL,
+  `insert_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`user_blood_pressure_id`),
   UNIQUE INDEX `user_heart_pressure_id_UNIQUE` (`user_blood_pressure_id` ASC),
@@ -227,6 +227,6 @@ CREATE TABLE IF NOT EXISTS `user_blood_pressure` (
   CONSTRAINT `fk_user_blood_pressure_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE )
   ENGINE = InnoDB;
