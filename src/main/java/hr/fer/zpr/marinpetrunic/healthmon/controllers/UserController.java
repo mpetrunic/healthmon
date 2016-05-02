@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private IUserRepository userRepository;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize(value = "hasAuthority('USER')")
     @RequestMapping(value = "/me", method = RequestMethod.GET)
     public Principal user(Principal user) {
         return user;
