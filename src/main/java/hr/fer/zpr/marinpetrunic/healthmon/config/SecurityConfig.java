@@ -1,11 +1,11 @@
 package hr.fer.zpr.marinpetrunic.healthmon.config;
 
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IUserRepository;
-import hr.fer.zpr.marinpetrunic.healthmon.repositories.impl.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,14 +28,13 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private DataSource dataSource;
-
-    @Autowired
-    private UserRepository userRepository;
+    @Lazy
+    private IUserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic();
+        http.csrf().disable().anonymous().and().httpBasic().and().logout().logoutUrl("/logout").and()
+                .authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll();
     }
 
     @Autowired
@@ -48,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
