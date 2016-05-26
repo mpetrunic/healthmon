@@ -2,9 +2,11 @@ package hr.fer.zpr.marinpetrunic.healthmon.controllers;
 
 import hr.fer.zpr.marinpetrunic.healthmon.controllers.exceptions.ResourceNotFoundException;
 import hr.fer.zpr.marinpetrunic.healthmon.models.RestError;
+import hr.fer.zpr.marinpetrunic.healthmon.models.UserModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -49,6 +51,10 @@ public class BaseController {
         error.setException(e.getClass().getName());
         error.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<RestError>(error, status);
+    }
+
+    protected UserModel getLoggedUser() {
+        return (UserModel) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }
