@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserActivity extends TableImpl<UserActivityRecord> {
 
-	private static final long serialVersionUID = -407790954;
+	private static final long serialVersionUID = 43355131;
 
 	/**
 	 * The reference instance of <code>healthmon.user_activity</code>
@@ -69,7 +69,7 @@ public class UserActivity extends TableImpl<UserActivityRecord> {
 	/**
 	 * The column <code>healthmon.user_activity.insert_date</code>.
 	 */
-	public final TableField<UserActivityRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<UserActivityRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * The column <code>healthmon.user_activity.user_id</code>.

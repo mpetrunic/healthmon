@@ -5,7 +5,7 @@ package hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.pojos;
 
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.annotation.Generated;
 
@@ -23,13 +23,13 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserMeal implements Serializable {
 
-	private static final long serialVersionUID = -576620191;
+	private static final long serialVersionUID = -818181951;
 
-	private final Integer userMealId;
-	private final Integer userId;
-	private final Integer mealTypeId;
-	private final Date    insertDate;
-	private final Integer mealId;
+	private final Integer   userMealId;
+	private final Integer   userId;
+	private final Integer   mealTypeId;
+	private final Timestamp insertDate;
+	private final Integer   mealId;
 
 	public UserMeal(UserMeal value) {
 		this.userMealId = value.userMealId;
@@ -40,11 +40,11 @@ public class UserMeal implements Serializable {
 	}
 
 	public UserMeal(
-		Integer userMealId,
-		Integer userId,
-		Integer mealTypeId,
-		Date    insertDate,
-		Integer mealId
+		Integer   userMealId,
+		Integer   userId,
+		Integer   mealTypeId,
+		Timestamp insertDate,
+		Integer   mealId
 	) {
 		this.userMealId = userMealId;
 		this.userId = userId;
@@ -65,7 +65,7 @@ public class UserMeal implements Serializable {
 		return this.mealTypeId;
 	}
 
-	public Date getInsertDate() {
+	public Timestamp getInsertDate() {
 		return this.insertDate;
 	}
 

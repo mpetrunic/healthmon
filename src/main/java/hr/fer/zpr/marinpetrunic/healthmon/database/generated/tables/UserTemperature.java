@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserTemperature extends TableImpl<UserTemperatureRecord> {
 
-	private static final long serialVersionUID = -345961461;
+	private static final long serialVersionUID = -550188432;
 
 	/**
 	 * The reference instance of <code>healthmon.user_temperature</code>
@@ -64,7 +64,7 @@ public class UserTemperature extends TableImpl<UserTemperatureRecord> {
 	/**
 	 * The column <code>healthmon.user_temperature.insert_date</code>.
 	 */
-	public final TableField<UserTemperatureRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<UserTemperatureRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * The column <code>healthmon.user_temperature.user_id</code>.

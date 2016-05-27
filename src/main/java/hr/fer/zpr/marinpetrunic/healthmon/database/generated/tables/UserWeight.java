@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserWeight extends TableImpl<UserWeightRecord> {
 
-	private static final long serialVersionUID = 542447016;
+	private static final long serialVersionUID = 1977535885;
 
 	/**
 	 * The reference instance of <code>healthmon.user_weight</code>
@@ -64,7 +64,7 @@ public class UserWeight extends TableImpl<UserWeightRecord> {
 	/**
 	 * The column <code>healthmon.user_weight.insert_date</code>.
 	 */
-	public final TableField<UserWeightRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<UserWeightRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * The column <code>healthmon.user_weight.user_id</code>.

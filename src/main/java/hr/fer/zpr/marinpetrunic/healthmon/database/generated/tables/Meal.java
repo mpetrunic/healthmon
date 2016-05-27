@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Meal extends TableImpl<MealRecord> {
 
-	private static final long serialVersionUID = -11698694;
+	private static final long serialVersionUID = -818383026;
 
 	/**
 	 * The reference instance of <code>healthmon.meal</code>
@@ -57,7 +57,7 @@ public class Meal extends TableImpl<MealRecord> {
 	/**
 	 * The column <code>healthmon.meal.name</code>.
 	 */
-	public final TableField<MealRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(45).nullable(false), this, "");
+	public final TableField<MealRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(200), this, "");
 
 	/**
 	 * The column <code>healthmon.meal.calories</code>.

@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EnvironmentStatistic extends TableImpl<EnvironmentStatisticRecord> {
 
-	private static final long serialVersionUID = 14744741;
+	private static final long serialVersionUID = 1002189664;
 
 	/**
 	 * The reference instance of <code>healthmon.environment_statistic</code>
@@ -74,7 +74,7 @@ public class EnvironmentStatistic extends TableImpl<EnvironmentStatisticRecord> 
 	/**
 	 * The column <code>healthmon.environment_statistic.insert_date</code>.
 	 */
-	public final TableField<EnvironmentStatisticRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
+	public final TableField<EnvironmentStatisticRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.defaulted(true), this, "");
 
 	/**
 	 * The column <code>healthmon.environment_statistic.location_id</code>.

@@ -15,6 +15,7 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserActivity
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserBloodPressure;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserHeartRate;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserMeal;
+import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserRole;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserTemperature;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserWeight;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.ActivityRecord;
@@ -28,6 +29,7 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.User
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserHeartRateRecord;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserMealRecord;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserRecord;
+import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserRoleRecord;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserTemperatureRecord;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserWeightRecord;
 
@@ -67,6 +69,7 @@ public class Keys {
 	public static final Identity<UserBloodPressureRecord, Integer> IDENTITY_USER_BLOOD_PRESSURE = Identities0.IDENTITY_USER_BLOOD_PRESSURE;
 	public static final Identity<UserHeartRateRecord, Integer> IDENTITY_USER_HEART_RATE = Identities0.IDENTITY_USER_HEART_RATE;
 	public static final Identity<UserMealRecord, Integer> IDENTITY_USER_MEAL = Identities0.IDENTITY_USER_MEAL;
+	public static final Identity<UserRoleRecord, Integer> IDENTITY_USER_ROLE = Identities0.IDENTITY_USER_ROLE;
 	public static final Identity<UserTemperatureRecord, Integer> IDENTITY_USER_TEMPERATURE = Identities0.IDENTITY_USER_TEMPERATURE;
 	public static final Identity<UserWeightRecord, Integer> IDENTITY_USER_WEIGHT = Identities0.IDENTITY_USER_WEIGHT;
 
@@ -99,6 +102,8 @@ public class Keys {
 	public static final UniqueKey<UserHeartRateRecord> KEY_USER_HEART_RATE_USER_HEART_RATE_ID_UNIQUE = UniqueKeys0.KEY_USER_HEART_RATE_USER_HEART_RATE_ID_UNIQUE;
 	public static final UniqueKey<UserMealRecord> KEY_USER_MEAL_PRIMARY = UniqueKeys0.KEY_USER_MEAL_PRIMARY;
 	public static final UniqueKey<UserMealRecord> KEY_USER_MEAL_ID_UNIQUE = UniqueKeys0.KEY_USER_MEAL_ID_UNIQUE;
+	public static final UniqueKey<UserRoleRecord> KEY_USER_ROLE_PRIMARY = UniqueKeys0.KEY_USER_ROLE_PRIMARY;
+	public static final UniqueKey<UserRoleRecord> KEY_USER_ROLE_UNI_USERNAME_ROLE = UniqueKeys0.KEY_USER_ROLE_UNI_USERNAME_ROLE;
 	public static final UniqueKey<UserTemperatureRecord> KEY_USER_TEMPERATURE_PRIMARY = UniqueKeys0.KEY_USER_TEMPERATURE_PRIMARY;
 	public static final UniqueKey<UserTemperatureRecord> KEY_USER_TEMPERATURE_USER_TEMPERATURE_ID_UNIQUE = UniqueKeys0.KEY_USER_TEMPERATURE_USER_TEMPERATURE_ID_UNIQUE;
 	public static final UniqueKey<UserWeightRecord> KEY_USER_WEIGHT_PRIMARY = UniqueKeys0.KEY_USER_WEIGHT_PRIMARY;
@@ -117,6 +122,7 @@ public class Keys {
 	public static final ForeignKey<UserMealRecord, UserRecord> FK_USER_MEAL_USER1 = ForeignKeys0.FK_USER_MEAL_USER1;
 	public static final ForeignKey<UserMealRecord, MealTypeRecord> FK_USER_MEAL_MEAL_TYPE1 = ForeignKeys0.FK_USER_MEAL_MEAL_TYPE1;
 	public static final ForeignKey<UserMealRecord, MealRecord> FK_USER_MEAL_MEAL1 = ForeignKeys0.FK_USER_MEAL_MEAL1;
+	public static final ForeignKey<UserRoleRecord, UserRecord> FK_USERNAME = ForeignKeys0.FK_USERNAME;
 	public static final ForeignKey<UserTemperatureRecord, UserRecord> FK_USER_TEMPERATURE_USER1 = ForeignKeys0.FK_USER_TEMPERATURE_USER1;
 	public static final ForeignKey<UserWeightRecord, UserRecord> FK_USER_WEIGHT_USER1 = ForeignKeys0.FK_USER_WEIGHT_USER1;
 
@@ -135,6 +141,7 @@ public class Keys {
 		public static Identity<UserBloodPressureRecord, Integer> IDENTITY_USER_BLOOD_PRESSURE = createIdentity(UserBloodPressure.USER_BLOOD_PRESSURE, UserBloodPressure.USER_BLOOD_PRESSURE.USER_BLOOD_PRESSURE_ID);
 		public static Identity<UserHeartRateRecord, Integer> IDENTITY_USER_HEART_RATE = createIdentity(UserHeartRate.USER_HEART_RATE, UserHeartRate.USER_HEART_RATE.USER_HEART_RATE_ID);
 		public static Identity<UserMealRecord, Integer> IDENTITY_USER_MEAL = createIdentity(UserMeal.USER_MEAL, UserMeal.USER_MEAL.USER_MEAL_ID);
+		public static Identity<UserRoleRecord, Integer> IDENTITY_USER_ROLE = createIdentity(UserRole.USER_ROLE, UserRole.USER_ROLE.ID);
 		public static Identity<UserTemperatureRecord, Integer> IDENTITY_USER_TEMPERATURE = createIdentity(UserTemperature.USER_TEMPERATURE, UserTemperature.USER_TEMPERATURE.USER_TEMPERATURE_ID);
 		public static Identity<UserWeightRecord, Integer> IDENTITY_USER_WEIGHT = createIdentity(UserWeight.USER_WEIGHT, UserWeight.USER_WEIGHT.USER_WEIGHT_ID);
 	}
@@ -165,6 +172,8 @@ public class Keys {
 		public static final UniqueKey<UserHeartRateRecord> KEY_USER_HEART_RATE_USER_HEART_RATE_ID_UNIQUE = createUniqueKey(UserHeartRate.USER_HEART_RATE, UserHeartRate.USER_HEART_RATE.USER_HEART_RATE_ID);
 		public static final UniqueKey<UserMealRecord> KEY_USER_MEAL_PRIMARY = createUniqueKey(UserMeal.USER_MEAL, UserMeal.USER_MEAL.USER_MEAL_ID);
 		public static final UniqueKey<UserMealRecord> KEY_USER_MEAL_ID_UNIQUE = createUniqueKey(UserMeal.USER_MEAL, UserMeal.USER_MEAL.USER_MEAL_ID);
+		public static final UniqueKey<UserRoleRecord> KEY_USER_ROLE_PRIMARY = createUniqueKey(UserRole.USER_ROLE, UserRole.USER_ROLE.ID);
+		public static final UniqueKey<UserRoleRecord> KEY_USER_ROLE_UNI_USERNAME_ROLE = createUniqueKey(UserRole.USER_ROLE, UserRole.USER_ROLE.ROLE, UserRole.USER_ROLE.USER_ID);
 		public static final UniqueKey<UserTemperatureRecord> KEY_USER_TEMPERATURE_PRIMARY = createUniqueKey(UserTemperature.USER_TEMPERATURE, UserTemperature.USER_TEMPERATURE.USER_TEMPERATURE_ID);
 		public static final UniqueKey<UserTemperatureRecord> KEY_USER_TEMPERATURE_USER_TEMPERATURE_ID_UNIQUE = createUniqueKey(UserTemperature.USER_TEMPERATURE, UserTemperature.USER_TEMPERATURE.USER_TEMPERATURE_ID);
 		public static final UniqueKey<UserWeightRecord> KEY_USER_WEIGHT_PRIMARY = createUniqueKey(UserWeight.USER_WEIGHT, UserWeight.USER_WEIGHT.USER_WEIGHT_ID);
@@ -181,6 +190,7 @@ public class Keys {
 		public static final ForeignKey<UserMealRecord, UserRecord> FK_USER_MEAL_USER1 = createForeignKey(hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys.KEY_USER_PRIMARY, UserMeal.USER_MEAL, UserMeal.USER_MEAL.USER_ID);
 		public static final ForeignKey<UserMealRecord, MealTypeRecord> FK_USER_MEAL_MEAL_TYPE1 = createForeignKey(hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys.KEY_MEAL_TYPE_PRIMARY, UserMeal.USER_MEAL, UserMeal.USER_MEAL.MEAL_TYPE_ID);
 		public static final ForeignKey<UserMealRecord, MealRecord> FK_USER_MEAL_MEAL1 = createForeignKey(hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys.KEY_MEAL_PRIMARY, UserMeal.USER_MEAL, UserMeal.USER_MEAL.MEAL_ID);
+		public static final ForeignKey<UserRoleRecord, UserRecord> FK_USERNAME = createForeignKey(hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys.KEY_USER_PRIMARY, UserRole.USER_ROLE, UserRole.USER_ROLE.USER_ID);
 		public static final ForeignKey<UserTemperatureRecord, UserRecord> FK_USER_TEMPERATURE_USER1 = createForeignKey(hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys.KEY_USER_PRIMARY, UserTemperature.USER_TEMPERATURE, UserTemperature.USER_TEMPERATURE.USER_ID);
 		public static final ForeignKey<UserWeightRecord, UserRecord> FK_USER_WEIGHT_USER1 = createForeignKey(hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys.KEY_USER_PRIMARY, UserWeight.USER_WEIGHT, UserWeight.USER_WEIGHT.USER_ID);
 	}

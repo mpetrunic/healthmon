@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserBloodPressure extends TableImpl<UserBloodPressureRecord> {
 
-	private static final long serialVersionUID = -238168570;
+	private static final long serialVersionUID = 191854977;
 
 	/**
 	 * The reference instance of <code>healthmon.user_blood_pressure</code>
@@ -69,7 +69,7 @@ public class UserBloodPressure extends TableImpl<UserBloodPressureRecord> {
 	/**
 	 * The column <code>healthmon.user_blood_pressure.insert_date</code>.
 	 */
-	public final TableField<UserBloodPressureRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<UserBloodPressureRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * The column <code>healthmon.user_blood_pressure.user_id</code>.

@@ -15,6 +15,7 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserActivity
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserBloodPressure;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserHeartRate;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserMeal;
+import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserRole;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserTemperature;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserWeight;
 
@@ -88,6 +89,11 @@ public class Tables {
 	 * The table healthmon.user_meal
 	 */
 	public static final UserMeal USER_MEAL = hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserMeal.USER_MEAL;
+
+	/**
+	 * The table healthmon.user_role
+	 */
+	public static final UserRole USER_ROLE = hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserRole.USER_ROLE;
 
 	/**
 	 * The table healthmon.user_temperature

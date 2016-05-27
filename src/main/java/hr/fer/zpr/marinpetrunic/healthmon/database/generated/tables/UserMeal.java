@@ -8,7 +8,7 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.Healthmon;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.Keys;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.UserMealRecord;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserMeal extends TableImpl<UserMealRecord> {
 
-	private static final long serialVersionUID = 1839922814;
+	private static final long serialVersionUID = -1800849851;
 
 	/**
 	 * The reference instance of <code>healthmon.user_meal</code>
@@ -69,7 +69,7 @@ public class UserMeal extends TableImpl<UserMealRecord> {
 	/**
 	 * The column <code>healthmon.user_meal.insert_date</code>.
 	 */
-	public final TableField<UserMealRecord, Date> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.DATE.nullable(false), this, "");
+	public final TableField<UserMealRecord, Timestamp> INSERT_DATE = createField("insert_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * The column <code>healthmon.user_meal.meal_id</code>.
