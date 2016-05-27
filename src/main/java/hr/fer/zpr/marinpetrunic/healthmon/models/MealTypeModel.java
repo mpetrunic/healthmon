@@ -7,6 +7,9 @@ import java.io.Serializable;
  */
 public class MealTypeModel implements Serializable {
 
+    public MealTypeModel() {
+    }
+
     public MealTypeModel(Integer id, String name) {
         this.id = id;
         this.name = name;
