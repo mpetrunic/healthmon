@@ -140,6 +140,10 @@ jooq {
 	}
 }
 
+bootRun {
+	systemProperties System.properties
+}
+
 tasks.build.dependsOn(loadProps)
 tasks.compileJava.dependsOn(loadProps)
 tasks.bootRun.dependsOn(loadProps)
