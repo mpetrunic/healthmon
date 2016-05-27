@@ -19,9 +19,6 @@ public class MealTypeRepository extends BaseRepository implements IMealTypeRepos
 
     private static final MealType MEAL_TYPE = new MealType();
 
-    @Autowired
-    private DSLContext dsl;
-
     @Override
     public List<MealTypeModel> all() {
         return dsl.selectFrom(MEAL_TYPE).fetch().into(MealTypeModel.class);

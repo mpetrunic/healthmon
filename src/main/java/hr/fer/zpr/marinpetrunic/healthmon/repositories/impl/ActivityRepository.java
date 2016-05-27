@@ -19,9 +19,6 @@ public class ActivityRepository extends BaseRepository implements IActivityRepos
 
     private static final Activity ACTIVITY = new Activity();
 
-    @Autowired
-    private DSLContext dsl;
-
     @Override
     public List<ActivityModel> all() {
         return dsl.selectFrom(ACTIVITY).fetch().into(ActivityModel.class);

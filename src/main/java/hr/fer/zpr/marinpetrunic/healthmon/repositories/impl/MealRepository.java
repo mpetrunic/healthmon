@@ -19,9 +19,6 @@ public class MealRepository extends BaseRepository implements IMealRepository {
 
     private static final Meal MEAL = new Meal();
 
-    @Autowired
-    private DSLContext dsl;
-
     @Override
     public List<MealModel> query(String query, Integer limit) {
         return dsl.selectFrom(MEAL).where(MEAL.NAME.like(query+"%")).limit(limit).fetch().into(MealModel.class);
