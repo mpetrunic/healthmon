@@ -25,6 +25,15 @@ public class ActivityRepository extends BaseRepository implements IActivityRepos
     }
 
     @Override
+    public ActivityModel get(Integer id) {
+        ActivityRecord record = dsl.selectFrom(ACTIVITY).where(ACTIVITY.ID.equal(id)).fetchAny();
+        if(record != null) {
+            return record.into(ActivityModel.class);
+        }
+        return null;
+    }
+
+    @Override
     public ActivityModel store(ActivityModel model) {
         ActivityRecord record = new ActivityRecord();
         record.from(model);

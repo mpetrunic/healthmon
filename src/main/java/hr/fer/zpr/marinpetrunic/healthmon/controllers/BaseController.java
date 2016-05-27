@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 /**
  * @author MarinPetrunic
  */
-public class BaseController {
+public abstract class BaseController {
 
     public static final String ALLOW_ALL = "permitAll";
     public static final String DENY_ALL = "denyAll";

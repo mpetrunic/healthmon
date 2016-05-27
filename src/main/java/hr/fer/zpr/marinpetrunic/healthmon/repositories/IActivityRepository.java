@@ -11,6 +11,8 @@ public interface IActivityRepository {
 
     List<ActivityModel> all();
 
+    ActivityModel get(Integer id);
+
     ActivityModel store(ActivityModel model);
 
 }
