@@ -127,9 +127,9 @@ jooq {
 			}
 			generate {
 				relations = true
-				deprecated = false
+				deprecated = true
 				records = true
-				immutablePojos = true
+				immutablePojos = false
 				fluentSetters = true
 			}
 			target {

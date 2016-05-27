@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserMeal extends TableImpl<UserMealRecord> {
 
-	private static final long serialVersionUID = -1800849851;
+	private static final long serialVersionUID = -1907703701;
 
 	/**
 	 * The reference instance of <code>healthmon.user_meal</code>
@@ -75,6 +75,11 @@ public class UserMeal extends TableImpl<UserMealRecord> {
 	 * The column <code>healthmon.user_meal.meal_id</code>.
 	 */
 	public final TableField<UserMealRecord, Integer> MEAL_ID = createField("meal_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+
+	/**
+	 * The column <code>healthmon.user_meal.quantity</code>.
+	 */
+	public final TableField<UserMealRecord, Integer> QUANTITY = createField("quantity", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
 	 * Create a <code>healthmon.user_meal</code> table reference

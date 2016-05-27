@@ -9,10 +9,12 @@ import java.util.List;
  */
 public interface IMealRepository {
 
-    public List<MealModel> query(String query, Integer limit);
+    List<MealModel> query(String query, Integer limit);
 
-    public MealModel store(MealModel model);
+    MealModel get(Integer id);
 
-    public Integer size();
+    MealModel store(MealModel model);
+
+    Integer size();
 
 }

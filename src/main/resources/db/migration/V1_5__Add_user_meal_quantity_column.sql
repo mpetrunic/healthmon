@@ -1,0 +1,1 @@
+ALTER TABLE user_meal ADD COLUMN quantity INTEGER;

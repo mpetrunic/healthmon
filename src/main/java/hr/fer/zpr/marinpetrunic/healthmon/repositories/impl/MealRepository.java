@@ -25,6 +25,15 @@ public class MealRepository extends BaseRepository implements IMealRepository {
     }
 
     @Override
+    public MealModel get(Integer id) {
+        MealRecord record = dsl.selectFrom(MEAL).where(MEAL.ID.equal(id)).fetchAny();
+        if(record != null) {
+            return record.into(MealModel.class);
+        }
+        return null;
+    }
+
+    @Override
     public MealModel store(MealModel model) {
         MealRecord record = new MealRecord();
         record.from(model);
