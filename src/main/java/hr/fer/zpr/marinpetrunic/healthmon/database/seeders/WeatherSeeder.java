@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author MarinPetrunic
  */
-@Profile("dev")
+@Profile("disabled")
 @Component
 public class WeatherSeeder implements CommandLineRunner {
 

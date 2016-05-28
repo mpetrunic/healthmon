@@ -1,4 +1,4 @@
-// Generated on 2016-05-01 using generator-angular 0.15.1
+// Generated on 2016-05-28 using generator-angular 0.15.1
 'use strict';
 
 // # Globbing
@@ -157,7 +157,9 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      options: { force: true },
+      options: {
+        force: true
+      },
       dist: {
         files: [{
           dot: true,
@@ -423,8 +425,8 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
+          cwd: '.',
+          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
         }]
       },
@@ -488,22 +490,6 @@ module.exports = function (grunt) {
     'postcss',
     'connect:test',
     'karma'
-  ]);
-
-  grunt.registerTask('build_dev', [
-    'clean:dist',
-    'wiredep',
-    'useminPrepare',
-    'concurrent:dist',
-    'postcss',
-    'ngtemplates',
-    'concat',
-    'ngAnnotate',
-    'copy:dist',
-    'cdnify',
-    'filerev',
-    'usemin',
-    'htmlmin'
   ]);
 
   grunt.registerTask('build', [
