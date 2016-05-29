@@ -13,10 +13,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.sql.DataSource;
 
 /**
  * @author MarinPetrunic
@@ -33,13 +32,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().anonymous().and().httpBasic().and().logout().logoutUrl("/logout").logoutSuccessUrl("/").and()
-                .authorizeRequests().antMatchers("/faicon.ico", "/index.html", "/home.html", "/login.html", "/").permitAll();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+            .and().csrf().disable()
+            .anonymous()
+            .and().httpBasic()
+            .and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true)
+            .and().authorizeRequests()
+            .antMatchers("/faicon.ico", "/index.html", "/home.html", "/login.html", "/").permitAll();
     }
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth)
-            throws Exception {
+        throws Exception {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setPasswordEncoder(passwordEncoder());
         authProvider.setUserDetailsService(userRepository);
