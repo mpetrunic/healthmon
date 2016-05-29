@@ -26,7 +26,7 @@ angular.module('healthmonApp')
         var promise = $http.get(apiRoot + '/api/v1/users/me', {headers: headers});
         self.promises.push(promise);
         promise.then(function (response) {
-          $rootScope.authenticatedUser = response.principal;
+          $rootScope.authenticatedUser = response.data.principal;
           $location.path('/dashboard');
         }, function (error) {
           console.log(error);

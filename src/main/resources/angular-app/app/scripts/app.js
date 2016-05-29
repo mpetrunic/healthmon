@@ -48,11 +48,30 @@ angular
         redirectTo: '/'
       });
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-  }).config(['$provide', function ($provide) {
-      $provide.value('apiRoot', angular.element(document.querySelector('#linkApiRoot')).attr('href'));
-}]).value('cgBusyDefaults',{
-  message:'Please wait...',
-  backdrop: false,
-  delay: 0,
-  minDuration: 300
+  }).config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
+  }]).config(['$provide', function ($provide) {
+    $provide.value('apiRoot', angular.element(document.querySelector('#linkApiRoot')).attr('href'));
+  }]).value('cgBusyDefaults', {
+    message: 'Please wait...',
+    backdrop: false,
+    delay: 0,
+    minDuration: 300
+  }).run(function ($rootScope, $location, User) {
+    $rootScope.$on('$locationChangeStart', function (event, next) {
+      if ($rootScope.authenticatedUser === undefined) {
+        User.get({id: 'me'}, function (response) {
+          $rootScope.authenticatedUser = response.principal;
+        }, function (response) {
+          console.log(response);
+          console.log(next);
+          if (next.templateUrl === 'views/login.html') {
+          } else {
+            $location.path('/');
+          }
+        });
+      } else {
+        $location.path('/dashboard');
+      }
+    });
 });

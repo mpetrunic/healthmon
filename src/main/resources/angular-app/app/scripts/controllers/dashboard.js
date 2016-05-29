@@ -8,10 +8,10 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('DashboardCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('DashboardCtrl', function ($rootScope) {
+    var self = this;
+    self.user = $rootScope.authenticatedUser;
+    $rootScope.$watch('authenticatedUser', function() {
+      self.user = $rootScope.authenticatedUser;
+    });
   });
