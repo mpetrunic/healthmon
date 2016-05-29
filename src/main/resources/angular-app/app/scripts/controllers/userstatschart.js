@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name healthmonApp.controller:UserstatschartcontrollerCtrl
+ * @name healthmonApp.controller:UserStatsChartCtrl
  * @description
- * # UserstatschartcontrollerCtrl
+ * # UserStatsChartCtrl
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('UserStatsChartControllerCtrl', function () {
+  .controller('UserStatsChartCtrl', function () {
     var self = this;
     self.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     self.series = ['Weight', 'Heart Rate', 'Blood Pressure', 'Body Temperature'];

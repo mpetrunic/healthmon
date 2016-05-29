@@ -60,10 +60,10 @@
     <section class="wrapper">
 
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserWeightCtrl as uwc" cg-busy="uwc.promises">
           <div class="info-box brown-bg">
             <i class="fa fa-balance-scale"></i>
-            <div class="count">93.0 KG</div>
+            <div class="count">{{uwc.lastWeight.weight}} KG</div>
             <div class="title">Weight</div>
           </div><!--/.info-box-->
         </div><!--/.col-->
@@ -95,7 +95,7 @@
       </div><!--/.row-->
 
       <div class="row">
-        <div class="col-lg-9 col-md-12" ng-controller="UserStatsChartControllerCtrl as uscc">
+        <div class="col-lg-9 col-md-12" ng-controller="UserStatsChartCtrl as uscc">
           <canvas id="user-stats" class="chart chart-line" chart-colours="uscc.colours" chart-data="uscc.data" chart-labels="uscc.labels"
             chart-legend="true" chart-series="uscc.series"></canvas>
         </div>
