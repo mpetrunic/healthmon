@@ -76,10 +76,10 @@
           </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserBloodPressureCtrl as ubpc" cg-busy="ubpc.promises">
           <div class="info-box red-bg">
             <i class="fa fa-heart"></i>
-            <div class="count">120/80 mmHg</div>
+            <div class="count">{{ubpc.lastBloodPressure.diastolic}}/{{ubpc.lastBloodPressure.systolic}} mmHg</div>
             <div class="title">Blood Pressure</div>
           </div><!--/.info-box-->
         </div><!--/.col-->
