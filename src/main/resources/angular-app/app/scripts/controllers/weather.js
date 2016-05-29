@@ -83,6 +83,10 @@ angular.module('healthmonApp')
       loadWeatherStatistic($rootScope.authenticatedUser.locationId);
     } else {
       $rootScope.$watch('authenticatedUser', function() {
+        if($rootScope.authenticatedUser === undefined) {
+          return;
+        }
+        console.log($rootScope.authenticatedUser);
         loadWeatherStatistic($rootScope.authenticatedUser.locationId);
       });
     }

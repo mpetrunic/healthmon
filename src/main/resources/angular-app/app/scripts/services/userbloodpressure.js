@@ -9,5 +9,5 @@
  */
 angular.module('healthmonApp')
   .factory('UserBloodPressure', function ($resource, apiRoot) {
-    return $resource(apiRoot+'/api/v1/blood-pressures/:id');
+    return $resource(apiRoot+'/api/v1/blood-pressures');
   });

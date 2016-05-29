@@ -13,6 +13,7 @@ angular.module('healthmonApp')
 
     self.promises = [];
     self.bloodPressures = [];
+    self.lastBloodPressure = null;
 
     function loadBloodPressures() {
       var query = UserBloodPressure.query().$promise;
