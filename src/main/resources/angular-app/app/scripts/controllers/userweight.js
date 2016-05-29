@@ -11,7 +11,6 @@ angular.module('healthmonApp')
   .controller('UserWeightCtrl', function ($rootScope, UserWeight) {
     var self = this;
     self.weighs = [];
-    self.lastWeight = 0;
     self.promises = [];
 
     function loadUserWeights() {

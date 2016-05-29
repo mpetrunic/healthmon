@@ -12,7 +12,6 @@ angular.module('healthmonApp')
     var self = this;
     self.promises = [];
     self.heartRates = [];
-    self.lastHeartRate = 0;
 
     function loadHeartRates() {
       var query = UserHeartRate.query().$promise;

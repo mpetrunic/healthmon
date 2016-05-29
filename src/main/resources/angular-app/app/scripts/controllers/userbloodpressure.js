@@ -12,7 +12,6 @@ angular.module('healthmonApp')
     var self = this;
 
     self.promises = [];
-    self.lastBloodPressure = undefined;
     self.bloodPressures = [];
 
     function loadBloodPressures() {

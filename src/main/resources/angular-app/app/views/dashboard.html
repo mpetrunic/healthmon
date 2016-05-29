@@ -79,15 +79,15 @@
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserBloodPressureCtrl as ubpc" cg-busy="ubpc.promises">
           <div class="info-box red-bg">
             <i class="fa fa-heart"></i>
-            <div class="count">{{ubpc.lastBloodPressure.diastolic}}/{{ubpc.lastBloodPressure.systolic}} mmHg</div>
+            <div class="count">{{ubpc.lastBloodPressure.diastolic}}/{{ubpc.lastBloodPressure.systolic}}</div>
             <div class="title">Blood Pressure</div>
           </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="BodyTemperatureCtrl as btc" cg-busy="btc.promises">
           <div class="info-box orange-bg">
             <i class="fa fa-universal-access"></i>
-            <div class="count">36.9 °C</div>
+            <div class="count">{{btc.lastBodyTemperature.temperature | number:1 }} °C</div>
             <div class="title">Body Temperature</div>
           </div><!--/.info-box-->
         </div><!--/.col-->
@@ -99,7 +99,7 @@
           <canvas id="user-stats" class="chart chart-line" chart-colours="uscc.colours" chart-data="uscc.data" chart-labels="uscc.labels"
             chart-legend="true" chart-series="uscc.series"></canvas>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-12">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="info-box yellow-bg">
