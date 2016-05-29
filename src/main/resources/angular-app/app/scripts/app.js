@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'cgBusy',
-    'ab-base64'
+    'ab-base64',
+    'chart.js'
   ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider

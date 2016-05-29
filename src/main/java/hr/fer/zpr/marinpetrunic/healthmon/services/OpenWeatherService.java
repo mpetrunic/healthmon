@@ -35,7 +35,7 @@ public class OpenWeatherService {
         return restTemplate.getForObject(MessageFormat.format(QUERY_LAT_LONG_WEATHER,lat, log, apiKey), OpenWeatherResponse.class);
     }
 
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void obtainCityWeatherData() {
         for(LocationModel loc : locationRepository.all()) {
             EnvioronmentStatisticModel model = this.query(loc.getLat(), loc.getLon()).toEnvioronmentStatisticModel();
