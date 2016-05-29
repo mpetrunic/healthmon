@@ -18,9 +18,10 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'cgBusy'
+    'cgBusy',
+    'ab-base64'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
@@ -37,11 +38,17 @@ angular
         controller: 'SignupCtrl',
         controllerAs: 'signup'
       })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  }).config(["$provide", function ($provide) {
-      $provide.value("apiRoot", $("#linkApiRoot").attr("href"));
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+  }).config(['$provide', function ($provide) {
+      $provide.value('apiRoot', angular.element(document.querySelector('#linkApiRoot')).attr('href'));
 }]).value('cgBusyDefaults',{
   message:'Please wait...',
   backdrop: false,

@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().anonymous().and().httpBasic().and().logout().logoutUrl("/logout").and()
+        http.csrf().disable().anonymous().and().httpBasic().and().logout().logoutUrl("/logout").logoutSuccessUrl("/").and()
                 .authorizeRequests().antMatchers("/faicon.ico", "/index.html", "/home.html", "/login.html", "/").permitAll();
     }
 

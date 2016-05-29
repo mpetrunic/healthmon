@@ -11,7 +11,6 @@ angular.module('healthmonApp')
   .controller('SignupCtrl', function (User, $location) {
     var self = this;
 
-    self.signUp = signUp;
     self.promises = [];
 
     String.prototype.capitalizeFirstLetter = function () {
@@ -22,15 +21,17 @@ angular.module('healthmonApp')
       var query = User.save(angular.copy(user)).$promise;
       self.promises.push(query);
       query.then(function () {
-        $location.path("#/");
+        $location.path('#/');
       }, function (error) {
         console.log(error);
         if (error.status === 400) {
-          self.error = error.data.errors[0].field.capitalizeFirstLetter() + " " + error.data.errors[0].message + "!";
+          self.error = error.data.errors[0].field.capitalizeFirstLetter() + ' ' + error.data.errors[0].message + '!';
         } else {
-          self.error = "Something went wrong!";
+          self.error = 'Something went wrong!';
         }
       });
     }
+
+    self.signUp = signUp;
 
   });

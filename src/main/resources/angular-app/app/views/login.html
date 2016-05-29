@@ -1,16 +1,24 @@
 <div class="login-img3-body">
   <div class="container">
 
-    <form class="login-form" action="index.html">
+    <form class="login-form" ng-submit="login.authenticate(credentials)" cg-busy="login.promises">
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
+        <div ng-if="login.error" class="alert alert-block alert-danger fade in">
+          <button data-dismiss="alert" class="close close-sm" type="button">
+            <i class="icon_close"></i>
+          </button>
+          <strong>Oh snap!</strong> {{login.error}}
+        </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" placeholder="Username" autofocus>
+          <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"
+                 placeholder="Username" autofocus>
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" id="password" name="password" ng-model="credentials.password" class="form-control"
+                 placeholder="Password">
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
         <a class="btn btn-info btn-lg btn-block" ng-href="#/signup">Signup</a>

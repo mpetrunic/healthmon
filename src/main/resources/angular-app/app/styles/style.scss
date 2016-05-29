@@ -30,6 +30,20 @@ ul li {
     list-style: none;
 }
 
+.nav .open > a {
+  background-color: transparent;
+}
+
+.nav .open > a {
+  background-color: transparent;
+  :hover {
+    background-color: transparent;
+  }
+  :focus {
+    background-color: transparent;
+  }
+}
+
 a, a:hover, a:focus {
     text-decoration: none;
     outline: none;
