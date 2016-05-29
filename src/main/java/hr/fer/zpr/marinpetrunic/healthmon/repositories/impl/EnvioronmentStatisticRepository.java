@@ -7,6 +7,7 @@ import hr.fer.zpr.marinpetrunic.healthmon.repositories.BaseRepository;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IEnvioronmentStatisticRepository;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,10 @@ public class EnvioronmentStatisticRepository extends BaseRepository implements I
     public List<EnvioronmentStatisticModel> all(Integer locationId) {
         return dsl
                 .selectFrom(ENVIRONMENT_STATISTIC)
-                .where(ENVIRONMENT_STATISTIC.LOCATION_ID.equal(locationId))
+                .where(ENVIRONMENT_STATISTIC.LOCATION_ID.equal(locationId)
+                    .and(ENVIRONMENT_STATISTIC.INSERT_DATE
+                        .between(Timestamp.valueOf(LocalDateTime.now().minusMonths(1)),
+                            Timestamp.valueOf(LocalDateTime.now()))))
                 .fetch().into(EnvioronmentStatisticModel.class);
     }
 
