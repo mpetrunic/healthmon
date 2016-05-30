@@ -28,7 +28,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class LocationRecord extends UpdatableRecordImpl<LocationRecord> implements Record4<Integer, String, Double, Double> {
 
-	private static final long serialVersionUID = -1526451017;
+	private static final long serialVersionUID = -206204420;
 
 	/**
 	 * Setter for <code>healthmon.location.id</code>.
@@ -76,17 +76,17 @@ public class LocationRecord extends UpdatableRecordImpl<LocationRecord> implemen
 	}
 
 	/**
-	 * Setter for <code>healthmon.location.long</code>.
+	 * Setter for <code>healthmon.location.lon</code>.
 	 */
-	public LocationRecord setLong(Double value) {
+	public LocationRecord setLon(Double value) {
 		setValue(3, value);
 		return this;
 	}
 
 	/**
-	 * Getter for <code>healthmon.location.long</code>.
+	 * Getter for <code>healthmon.location.lon</code>.
 	 */
-	public Double getLong() {
+	public Double getLon() {
 		return (Double) getValue(3);
 	}
 
@@ -151,7 +151,7 @@ public class LocationRecord extends UpdatableRecordImpl<LocationRecord> implemen
 	 */
 	@Override
 	public Field<Double> field4() {
-		return Location.LOCATION.LONG;
+		return Location.LOCATION.LON;
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class LocationRecord extends UpdatableRecordImpl<LocationRecord> implemen
 	 */
 	@Override
 	public Double value4() {
-		return getLong();
+		return getLon();
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class LocationRecord extends UpdatableRecordImpl<LocationRecord> implemen
 	 */
 	@Override
 	public LocationRecord value4(Double value) {
-		setLong(value);
+		setLon(value);
 		return this;
 	}
 
@@ -248,12 +248,12 @@ public class LocationRecord extends UpdatableRecordImpl<LocationRecord> implemen
 	/**
 	 * Create a detached, initialised LocationRecord
 	 */
-	public LocationRecord(Integer id, String cityName, Double lat, Double long_) {
+	public LocationRecord(Integer id, String cityName, Double lat, Double lon) {
 		super(Location.LOCATION);
 
 		setValue(0, id);
 		setValue(1, cityName);
 		setValue(2, lat);
-		setValue(3, long_);
+		setValue(3, lon);
 	}
 }

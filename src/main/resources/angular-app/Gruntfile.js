@@ -19,6 +19,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn'
   });
 
+  grunt.loadNpmTasks('grunt-string-replace');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -226,6 +228,19 @@ module.exports = function (grunt) {
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
+      }
+    },
+    'string-replace': {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/index.html': ['<%= yeoman.app %>/index.html']
+        },
+        options: {
+          replacements: [{
+            pattern: 'http://localhost:8080',
+            replacement: ''
+          }]
+        }
       }
     },
 
@@ -502,6 +517,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'string-replace:dist',
     'cdnify',
     'cssmin',
     'uglify',

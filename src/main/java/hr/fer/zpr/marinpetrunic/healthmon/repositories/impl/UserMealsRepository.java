@@ -40,14 +40,14 @@ public class UserMealsRepository extends BaseRepository implements IUserMealRepo
     }
 
     @Override
-    public List<UserMealsByDayModel> all(LocalDate from, LocalDate to) {
+    public List<UserMealsByDayModel> all(Integer userId, LocalDate from, LocalDate to) {
         if(from == null) from = LocalDate.now().minusMonths(1);
         if(to == null) to = LocalDate.now().plusMonths(1);
         List<UserMealRecord> records = dsl.selectFrom(USER_MEAL)
-                .where(
-                        USER_MEAL.INSERT_DATE.between(
+                .where(USER_MEAL.USER_ID.equal(userId)
+                        .and(USER_MEAL.INSERT_DATE.between(
                                 Timestamp.valueOf(from.atStartOfDay()),
-                                Timestamp.valueOf(to.plusDays(1).atStartOfDay())))
+                                Timestamp.valueOf(to.plusDays(1).atStartOfDay()))))
                 .orderBy(USER_MEAL.INSERT_DATE.asc(), USER_MEAL.MEAL_TYPE_ID.asc())
                 .fetch();
         return toUserMealsByDay(records);

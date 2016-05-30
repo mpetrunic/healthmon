@@ -48,4 +48,13 @@ public class OpenWeatherResponse implements Serializable {
         model.setTemperature(this.getMain().getTemp().floatValue());
         return model;
     }
+
+    @Override
+    public String toString() {
+        return "OpenWeatherResponse{" +
+                "coord=" + coord +
+                ", base='" + base + '\'' +
+                ", main=" + main +
+                '}';
+    }
 }

@@ -59,18 +59,21 @@ angular
     delay: 0,
     minDuration: 300
   }).run(function ($rootScope, $location, User) {
+
+    String.prototype.endsWith = function(suffix) {
+      return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
     $rootScope.$on('$locationChangeStart', function (event, next) {
       if ($rootScope.authenticatedUser === undefined) {
         User.get({id: 'me'}, function (response) {
           $rootScope.authenticatedUser = response.principal;
         }, function () {
-          if (next.templateUrl === 'views/login.html') {
+          if (next.endsWith('/') || next.endsWith('signup')) {
           } else {
             $location.path('/');
           }
         });
       } else {
-        $location.path('/dashboard');
       }
     });
 });

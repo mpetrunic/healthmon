@@ -79,4 +79,17 @@ public class MainData implements Serializable {
     public void setGrndLevel(Double grndLevel) {
         this.grndLevel = grndLevel;
     }
+
+    @Override
+    public String toString() {
+        return "MainData{" +
+                "temp=" + temp +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                ", tempMin=" + tempMin +
+                ", tempMax=" + tempMax +
+                ", seaLevel=" + seaLevel +
+                ", grndLevel=" + grndLevel +
+                '}';
+    }
 }

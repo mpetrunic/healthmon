@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IUserMealRepository {
 
-    List<UserMealsByDayModel> all(LocalDate from, LocalDate to);
+    List<UserMealsByDayModel> all(Integer userId, LocalDate from, LocalDate to);
 
     UserMealModel store(UserMealModel model);
 

@@ -28,7 +28,7 @@ public class UserMealsController extends BaseController {
             @RequestParam(name = "from", required = false) LocalDate from,
             @RequestParam(name = "to", required = false) LocalDate to
     ) {
-        return userMealRepository.all(from, to);
+        return userMealRepository.all(this.getLoggedUser().getId(), from, to);
     }
 
     @PreAuthorize(USER)

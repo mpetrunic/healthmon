@@ -1,11 +1,11 @@
 buildscript {
     ext {
-        springBootVersion = '1.3.3.RELEASE'
+        springBootVersion = '1.3.5.RELEASE'
         flywayVersion = '4.0'
     }
     repositories {
-        mavenCentral()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -17,6 +17,8 @@ buildscript {
 
 plugins {
     id "org.flywaydb.flyway" version "4.0"
+    id "com.moowork.grunt" version "0.12"
+    id "com.moowork.node" version "0.12"
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens
@@ -30,11 +32,12 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'nu.studer.jooq'
+apply plugin: 'com.moowork.grunt'
 
 
 war {
     baseName = 'healthmon'
-    version = '0.0.1-SNAPSHOT'
+    version = '1.0.0-RELEASE'
 }
 
 repositories {
@@ -46,7 +49,6 @@ configurations {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-jooq')
@@ -56,16 +58,15 @@ dependencies {
     compile("org.flywaydb:flyway-core:${project.ext.flywayVersion}")
     compile('mysql:mysql-connector-java')
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.4')
-    compile('org.springframework.boot:spring-boot-starter-tomcat')
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
-        include '**/*.properties'
         exclude "angular-app"
         filter ReplaceTokens, tokens: [
-            "active_profile": profile
+            "active_profile": project.getProperties().containsKey('activeProfiles') ? project.property('activeProfiles') : 'dev'
         ]
     }
     exclude "angular-app"
@@ -136,7 +137,7 @@ jooq {
             }
             generate {
                 relations = true
-                deprecated = true
+                deprecated = false
                 records = true
                 immutablePojos = false
                 fluentSetters = true
@@ -153,9 +154,38 @@ bootRun {
     systemProperties System.properties
 }
 
-tasks.build.dependsOn(loadProps)
-tasks.compileJava.dependsOn(loadProps)
-tasks.bootRun.dependsOn(loadProps)
+node {
+    download = false
+
+    // Set the work directory for unpacking node
+    workDir = file("${project.buildDir}")
+
+    // Set the work directory where node_modules should be located
+    nodeModulesDir = file("${project.projectDir}/src/main/resources/angular-app")
+}
+
+grunt {
+    // Set the directory where Gruntfile.js should be found
+    workDir = file("${project.projectDir}/src/main/resources/angular-app")
+
+    // Whether colors should output on the terminal
+    colors = true
+
+    // Whether output from Grunt should be buffered - useful when running tasks in parallel
+    bufferOutput = false
+}
+
+build.dependsOn(loadProps)
+compileJava.dependsOn(loadProps)
+bootRun.dependsOn(loadProps)
+// makes sure on each build that grunt is installed
+grunt_build.dependsOn 'installGrunt'
+
+// processes your package.json before running grunt build
+grunt_build.dependsOn 'npmInstall'
+
+build.dependsOn grunt_build
+bootRun.dependsOn grunt_build
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'

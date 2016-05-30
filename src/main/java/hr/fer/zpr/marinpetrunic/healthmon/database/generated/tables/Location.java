@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Location extends TableImpl<LocationRecord> {
 
-	private static final long serialVersionUID = 172904407;
+	private static final long serialVersionUID = 1499441129;
 
 	/**
 	 * The reference instance of <code>healthmon.location</code>
@@ -65,9 +65,9 @@ public class Location extends TableImpl<LocationRecord> {
 	public final TableField<LocationRecord, Double> LAT = createField("lat", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
 	/**
-	 * The column <code>healthmon.location.long</code>.
+	 * The column <code>healthmon.location.lon</code>.
 	 */
-	public final TableField<LocationRecord, Double> LONG = createField("long", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<LocationRecord, Double> LON = createField("lon", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * Create a <code>healthmon.location</code> table reference

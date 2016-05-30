@@ -29,4 +29,12 @@ public class Coordinates implements Serializable {
     public void setLat(Double lat) {
         this.lat = lat;
     }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "lon=" + lon +
+                ", lat=" + lat +
+                '}';
+    }
 }
