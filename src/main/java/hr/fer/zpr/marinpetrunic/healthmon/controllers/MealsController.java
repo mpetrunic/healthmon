@@ -1,13 +1,11 @@
 package hr.fer.zpr.marinpetrunic.healthmon.controllers;
 
+import hr.fer.zpr.marinpetrunic.healthmon.controllers.exceptions.ResourceNotFoundException;
 import hr.fer.zpr.marinpetrunic.healthmon.models.MealModel;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IMealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +25,16 @@ public class MealsController extends BaseController {
             @RequestParam(name = "query", defaultValue = "") String query,
             @RequestParam(name = "limit", defaultValue = "10") Integer limit) {
         return mealRepository.query(query, limit);
+    }
+
+    @PreAuthorize(USER)
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public MealModel get(@PathVariable Integer id) {
+        MealModel meal =  mealRepository.get(id);
+        if(meal == null) {
+            throw new ResourceNotFoundException();
+        }
+        return meal;
     }
 
 }

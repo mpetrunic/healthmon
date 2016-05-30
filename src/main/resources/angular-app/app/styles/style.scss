@@ -925,8 +925,8 @@ div[data-role="editor-toolbar"] {
 =================================================================== */
 .info-box {
   min-height: 140px;
-  margin-bottom: 30px;
-  padding: 20px;
+  margin-bottom: 20px;
+  padding: 20px 20px 0px;
   color: white;
   -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
@@ -942,6 +942,33 @@ div[data-role="editor-toolbar"] {
   text-align: center;
   padding-right: 20px;
   color: rgba(255, 255, 255, 0.75);
+}
+.info-box .active {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.info-box .card-button {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  i {
+    font-size: 15px;
+    height: 15px;
+    width: 15px;
+    line-height: 15px;
+    padding-right: 5px;
+    vertical-align: middle;
+    padding-top: 3px;
+  }
+}
+.info-box .card-button-left {
+  border-right: 1px white solid;
+}
+.info-box .card-button-right {
+  border-left: 1px white solid;
 }
 .info-box .count {
   margin-top: 20px;

@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'cgBusy',
     'ab-base64',
-    'chart.js'
+    'chart.js',
+    'ui.select'
   ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider

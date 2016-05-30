@@ -65,24 +65,25 @@
             <i class="fa fa-balance-scale"></i>
             <div class="count">{{uwc.lastWeight.weight}} KG</div>
             <div class="title">Weight</div>
+            <div class="row"></div>
+            <div class="row">
+              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div class="col-md-6 card-button card-button-right active"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+            </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
 
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserHeartRateCtrl as uhrc"
              cg-busy="uhrc.promises">
           <div class="info-box blue-bg">
-            <i class="fa fa-heartbeat"></i>
+            <i class="fa fa-heartbeat "></i>
             <div class="count">{{uhrc.lastHeartRate.heartRate}} BPM</div>
             <div class="title">Heart rate</div>
-          </div><!--/.info-box-->
-        </div><!--/.col-->
-
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserBloodPressureCtrl as ubpc"
-             cg-busy="ubpc.promises">
-          <div class="info-box red-bg">
-            <i class="fa fa-heart"></i>
-            <div class="count">{{ubpc.lastBloodPressure.diastolic}}/{{ubpc.lastBloodPressure.systolic}}</div>
-            <div class="title">Blood Pressure</div>
+            <div class="row"></div>
+            <div class="row">
+              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+            </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
 
@@ -92,6 +93,25 @@
             <i class="fa fa-universal-access"></i>
             <div class="count">{{btc.lastBodyTemperature.temperature | number:1 }} °C</div>
             <div class="title">Body Temperature</div>
+            <div class="row"></div>
+            <div class="row">
+              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+            </div>
+          </div><!--/.info-box-->
+        </div><!--/.col-->
+
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserBloodPressureCtrl as ubpc"
+             cg-busy="ubpc.promises">
+          <div class="info-box red-bg">
+            <i class="fa fa-heart"></i>
+            <div class="count">{{ubpc.lastBloodPressure.diastolic}}/{{ubpc.lastBloodPressure.systolic}}</div>
+            <div class="title">Blood Pressure</div>
+            <div class="row"></div>
+            <div class="row">
+              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+            </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
 
@@ -112,17 +132,22 @@
                 <i class="fa fa-sun-o"></i>
                 <div class="count">{{wc.weatherRating}}/10</div>
                 <div class="title">Weather Rating</div>
+                <div class="row"></div>
+                <div class="row">
+                  <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+                  <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+                </div>
               </div><!--/.info-box-->
             </div><!--/.col-->
           </div>
           <!--<div class="row">-->
-            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-              <!--<div class="info-box green-bg">-->
-                <!--<i class="fa fa-cutlery"></i>-->
-                <!--<div class="count">1200 kcal</div>-->
-                <!--<div class="title">Today Calories</div>-->
-              <!--</div>&lt;!&ndash;/.info-box&ndash;&gt;-->
-            <!--</div>&lt;!&ndash;/.col&ndash;&gt;-->
+          <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+          <!--<div class="info-box green-bg">-->
+          <!--<i class="fa fa-cutlery"></i>-->
+          <!--<div class="count">1200 kcal</div>-->
+          <!--<div class="title">Today Calories</div>-->
+          <!--</div>&lt;!&ndash;/.info-box&ndash;&gt;-->
+          <!--</div>&lt;!&ndash;/.col&ndash;&gt;-->
           <!--</div>-->
         </div>
       </div>
@@ -132,34 +157,68 @@
             <header class="panel-heading">
               Today Meals
             </header>
-            <table class="table">
+            <table class="table table-striped table-responsive">
               <thead>
-                <tr>
-                  <th>Food</th>
-                  <th>Quantity</th>
-                  <th>Calories</th>
-                  <th>Fat</th>
-                  <th>Proteins</th>
-                  <th>Meal Type</th>
-                </tr>
+              <tr>
+                <th>Food</th>
+                <th>Quantity</th>
+                <th>Calories</th>
+                <th>Fat</th>
+                <th>Proteins</th>
+                <th>Meal Type</th>
+              </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="meal in todayMeals">
-                  <td>{{meal.name}}</td>
-                  <td>{{meal.quantity}} g</td>
-                  <td>{{meal.calories | number:1}} kcal</td>
-                  <td>{{meal.fat | number:1 }} g</td>
-                  <td>{{meal.proteins | number:1}} g</td>
-                  <td>{{meal.type}}</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Total</td>
-                  <td>{{umc.getTotalTodayCalories() | number:1}} kcal</td>
-                  <td>{{umc.getTotalTodayFats() | number:1}} g</td>
-                  <td>{{umc.getTotalTodayProteins() | number:1}} g</td>
-                  <td></td>
-                </tr>
+              <tr ng-repeat="meal in todayMeals">
+                <td>{{meal.name}}</td>
+                <td class="text-right">{{meal.quantity}} g</td>
+                <td class="text-right">{{meal.calories | number:1}} kcal</td>
+                <td class="text-right">{{meal.fat | number:1 }} g</td>
+                <td class="text-right">{{meal.proteins | number:1}} g</td>
+                <td>{{meal.type}}</td>
+              </tr>
+              <tr ng-show="addUserMealError">
+               <td colspan="6">
+                 <div class="alert alert-block alert-danger fade in">
+                   <button ng-click="addUserMealError = null" class="close close-sm" type="button">
+                     <i class="icon_close"></i>
+                   </button>
+                   <strong>Oh snap!</strong> {{addUserMealError}}
+                 </div>
+               </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <ui-select ng-model="meal.mealId" name="mealId" theme="bootstrap" title="Food name">
+                    <ui-select-match placeholder="Select a food by it's name...">
+                      {{$select.selected.name || $select.selected}}
+                    </ui-select-match>
+                    <ui-select-choices refresh="umc.searchFood($select.search)"
+                      repeat="food.id as food in foods track by food.id" key="id">
+                      <div ng-bind-html="food.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </td>
+                <td><input class="form-control" name="quantity" ng-model="meal.quantity" type="number" placeholder="Quantity"/></td>
+                <td>
+                  <select ng-init="meal.mealTypeId = meal.mealTypeId || umc.mealTypes[0].id" name="mealTypeId"
+                          ng-options="mealType.id as mealType.name for mealType in umc.mealTypes track by mealType.id"
+                          class="form-control" name="mealType" id="mealType" ng-model="meal.mealTypeId">
+                    <!--<option ng-repeat="mealType in umc.mealTypes" value="mealType.id">{{mealType.name}}</option>-->
+                  </select>
+                </td>
+                <td>
+                  <button class="btn btn-info btn-block" ng-click="umc.storeUserMeal(meal)"><span class="icon_plus"></span>Add</button>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><b>Total</b></td>
+                <td class="text-right">{{umc.getTotalTodayCalories() | number:1}} kcal</td>
+                <td class="text-right">{{umc.getTotalTodayFats() | number:1}} g</td>
+                <td class="text-right">{{umc.getTotalTodayProteins() | number:1}} g</td>
+                <td></td>
+              </tr>
               </tbody>
             </table>
           </section>

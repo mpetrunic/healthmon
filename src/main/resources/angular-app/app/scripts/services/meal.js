@@ -9,5 +9,5 @@
  */
 angular.module('healthmonApp')
   .factory('Meal', function ($resource, apiRoot) {
-    return $resource(apiRoot+'/api/v1/meals');
+    return $resource(apiRoot+'/api/v1/meals/:id');
   });
