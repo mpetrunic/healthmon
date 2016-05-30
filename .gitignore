@@ -272,3 +272,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea
 /src/main/resources/static/
+/src/main/resources/angular-app/.tmp/styles/

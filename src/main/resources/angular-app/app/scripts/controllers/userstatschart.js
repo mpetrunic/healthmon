@@ -10,6 +10,11 @@
 angular.module('healthmonApp')
   .controller('UserStatsChartCtrl', function () {
     var self = this;
+    self.chartHeight = window.innerHeight*0.35;
+    self.options = {
+      responsive: true,
+      maintainAspectRatio: false
+    };
     self.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     self.series = ['Weight', 'Heart Rate', 'Blood Pressure', 'Body Temperature'];
     self.data = [

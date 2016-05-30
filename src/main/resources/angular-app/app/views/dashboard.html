@@ -17,7 +17,7 @@
       <ul class="nav pull-right top-menu">
         <!-- user login dropdown start-->
         <li class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" >
+          <a data-toggle="dropdown" class="dropdown-toggle">
                             <span class="profile-ava">
                                 <img height="30" width="30" alt="" src="images/avatar.png">
                             </span>
@@ -68,7 +68,8 @@
           </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserHeartRateCtrl as uhrc" cg-busy="uhrc.promises">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserHeartRateCtrl as uhrc"
+             cg-busy="uhrc.promises">
           <div class="info-box blue-bg">
             <i class="fa fa-heartbeat"></i>
             <div class="count">{{uhrc.lastHeartRate.heartRate}} BPM</div>
@@ -76,7 +77,8 @@
           </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserBloodPressureCtrl as ubpc" cg-busy="ubpc.promises">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="UserBloodPressureCtrl as ubpc"
+             cg-busy="ubpc.promises">
           <div class="info-box red-bg">
             <i class="fa fa-heart"></i>
             <div class="count">{{ubpc.lastBloodPressure.diastolic}}/{{ubpc.lastBloodPressure.systolic}}</div>
@@ -84,7 +86,8 @@
           </div><!--/.info-box-->
         </div><!--/.col-->
 
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="BodyTemperatureCtrl as btc" cg-busy="btc.promises">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-controller="BodyTemperatureCtrl as btc"
+             cg-busy="btc.promises">
           <div class="info-box orange-bg">
             <i class="fa fa-universal-access"></i>
             <div class="count">{{btc.lastBodyTemperature.temperature | number:1 }} °C</div>
@@ -96,12 +99,15 @@
 
       <div class="row">
         <div class="col-lg-9 col-md-12" ng-controller="UserStatsChartCtrl as uscc">
-          <canvas id="user-stats" class="chart chart-line" chart-colours="uscc.colours" chart-data="uscc.data" chart-labels="uscc.labels"
-            chart-legend="true" chart-series="uscc.series"></canvas>
+          <canvas height="{{uscc.chartHeight}}" chart-options="uscc.options" id="user-stats" class="chart chart-line"
+                  chart-colours="uscc.colours" chart-data="uscc.data"
+                  chart-labels="uscc.labels"
+                  chart-legend="true" chart-series="uscc.series"></canvas>
         </div>
         <div class="col-lg-3 col-md-12">
           <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="WeatherCtrl as wc" cg-busy="wc.promises">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="WeatherCtrl as wc"
+                 cg-busy="wc.promises">
               <div class="info-box yellow-bg">
                 <i class="fa fa-sun-o"></i>
                 <div class="count">{{wc.weatherRating}}/10</div>
@@ -109,62 +115,57 @@
               </div><!--/.info-box-->
             </div><!--/.col-->
           </div>
-          <section class="panel">
+          <!--<div class="row">-->
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+              <!--<div class="info-box green-bg">-->
+                <!--<i class="fa fa-cutlery"></i>-->
+                <!--<div class="count">1200 kcal</div>-->
+                <!--<div class="title">Today Calories</div>-->
+              <!--</div>&lt;!&ndash;/.info-box&ndash;&gt;-->
+            <!--</div>&lt;!&ndash;/.col&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <section class="panel" ng-controller="UserMealCtrl as umc" cg-busy="umc.promises">
             <header class="panel-heading">
-              Todays Calories
+              Today Meals
             </header>
             <table class="table">
               <thead>
-              <tr>
-                <th>Food</th>
-                <th>Quantity</th>
-                <th>Calories</th>
-                <th>Meal Type</th>
-              </tr>
+                <tr>
+                  <th>Food</th>
+                  <th>Quantity</th>
+                  <th>Calories</th>
+                  <th>Fat</th>
+                  <th>Proteins</th>
+                  <th>Meal Type</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Apple</td>
-                <td>400g</td>
-                <td>150 kcal</td>
-                <td>Breakfast</td>
-              </tr>
-              <tr>
-                <td>Apple</td>
-                <td>400g</td>
-                <td>150 kcal</td>
-                <td>Breakfast</td>
-              </tr>
-              <tr>
-                <td>Apple</td>
-                <td>400g</td>
-                <td>150 kcal</td>
-                <td>Breakfast</td>
-              </tr>
-              <tr>
-                <td>Apple</td>
-                <td>400g</td>
-                <td>150 kcal</td>
-                <td>Breakfast</td>
-              </tr>
-              <tr>
-                <td>Apple</td>
-                <td>400g</td>
-                <td>150 kcal</td>
-                <td>Breakfast</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>Total</td>
-                <td>1200kcal</td>
-              </tr>
+                <tr ng-repeat="meal in todayMeals">
+                  <td>{{meal.name}}</td>
+                  <td>{{meal.quantity}} g</td>
+                  <td>{{meal.calories | number:1}} kcal</td>
+                  <td>{{meal.fat | number:1 }} g</td>
+                  <td>{{meal.proteins | number:1}} g</td>
+                  <td>{{meal.type}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Total</td>
+                  <td>{{umc.getTotalTodayCalories() | number:1}} kcal</td>
+                  <td>{{umc.getTotalTodayFats() | number:1}} g</td>
+                  <td>{{umc.getTotalTodayProteins() | number:1}} g</td>
+                  <td></td>
+                </tr>
               </tbody>
             </table>
           </section>
         </div>
       </div>
+    </section>
+    <!--main content end-->
   </section>
-  <!--main content end-->
-</section>
-<!-- container section start -->
+  <!-- container section start -->

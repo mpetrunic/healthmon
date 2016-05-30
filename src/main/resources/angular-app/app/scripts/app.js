@@ -62,9 +62,7 @@ angular
       if ($rootScope.authenticatedUser === undefined) {
         User.get({id: 'me'}, function (response) {
           $rootScope.authenticatedUser = response.principal;
-        }, function (response) {
-          console.log(response);
-          console.log(next);
+        }, function () {
           if (next.templateUrl === 'views/login.html') {
           } else {
             $location.path('/');
