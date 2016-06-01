@@ -67,7 +67,10 @@
             <div class="title">Weight</div>
             <div class="row"></div>
             <div class="row">
-              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div popover-is-open="uwc.popoverActive" ng-class="{'active': uwc.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
+                     popover-title="Add new weight!" popover-placement="bottom" uib-popover-template="'views/addweightformtooltip.html'" >
+                <i class="fa fa-plus"></i>Add
+              </div>
               <div class="col-md-6 card-button card-button-right active"><i class="fa fa-bar-chart"></i>Hide Graph</div>
             </div>
           </div><!--/.info-box-->

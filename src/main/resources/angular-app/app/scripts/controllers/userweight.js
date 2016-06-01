@@ -12,6 +12,7 @@ angular.module('healthmonApp')
     var self = this;
     self.weighs = [];
     self.promises = [];
+    self.popoverActive = false;
 
     function loadUserWeights() {
       var query = UserWeight.query().$promise;
@@ -22,5 +23,19 @@ angular.module('healthmonApp')
       });
     }
 
+    function addNewWeight(weight) {
+      var query = UserWeight.save({weight: weight}).$promise;
+      self.promises.push(query);
+      query.then(function(response) {
+        self.weighs.push(response);
+        self.lastWeight = response;
+        self.popoverActive = false;
+      }, function(error) {
+        self.addWeightError = error.data.message;
+      });
+    }
+
     loadUserWeights();
+
+    self.addNewWeight = addNewWeight;
   });

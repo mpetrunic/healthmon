@@ -21,7 +21,8 @@ angular
     'cgBusy',
     'ab-base64',
     'chart.js',
-    'ui.select'
+    'ui.select',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
