@@ -84,7 +84,9 @@
             <div class="title">Heart rate</div>
             <div class="row"></div>
             <div class="row">
-              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div popover-is-open="uhrc.popoverActive" ng-class="{'active': uhrc.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
+                   popover-title="Add new heart rate!" popover-placement="bottom" uib-popover-template="'views/addheartratetooltip.html'" >
+                <i class="fa fa-plus"></i>Add</div>
               <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
             </div>
           </div><!--/.info-box-->
@@ -231,3 +233,4 @@
     <!--main content end-->
   </section>
   <!-- container section start -->
+</section>

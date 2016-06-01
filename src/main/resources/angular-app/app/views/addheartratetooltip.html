@@ -1,0 +1,10 @@
+<div>
+  <div ng-if="uhrc.addHeartRateError" class="alert alert-block alert-danger fade in">
+    <button data-dismiss="alert" class="close close-sm" type="button">
+      <i class="icon_close"></i>
+    </button>
+    <strong>Oh snap!</strong> {{uhrc.addHeartRateError}}
+  </div>
+  <p><input class="form-control" placeholder="Heart Rate" type="number" name="heartRate" ng-model="heartRate"  /></p>
+  <p><button type="button" class="btn btn-info btn-block" ng-click="uhrc.addHeartRate(heartRate)">Submit</button></p>
+</div>

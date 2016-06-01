@@ -12,6 +12,7 @@ angular.module('healthmonApp')
     var self = this;
     self.promises = [];
     self.heartRates = [];
+    self.popoverActive = false;
 
     function loadHeartRates() {
       var query = UserHeartRate.query().$promise;
@@ -22,5 +23,19 @@ angular.module('healthmonApp')
       });
     }
 
+    function addHeartRate(heartRate) {
+      var query = UserHeartRate.save({heartRate: heartRate}).$promise;
+      self.promises.push(query);
+      query.then(function(response) {
+        self.heartRates.push(response);
+        self.lastHeartRate = response;
+        self.popoverActive = false;
+      }, function(error) {
+        self.addHeartRateError = error.data.message;
+      });
+    }
+
     loadHeartRates();
+
+    self.addHeartRate = addHeartRate;
   });
