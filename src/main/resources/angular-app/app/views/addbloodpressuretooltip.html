@@ -1,0 +1,11 @@
+<div>
+  <div ng-if="ubpc.addBloodPressureError" class="alert alert-block alert-danger fade in">
+    <button data-dismiss="alert" class="close close-sm" type="button">
+      <i class="icon_close"></i>
+    </button>
+    <strong>Oh snap!</strong> {{ubpc.addBloodPressureError}}
+  </div>
+  <p><input class="form-control" placeholder="Diastolic" type="number" name="diastolic" ng-model="bloodPressure.diastolic"  /></p>
+  <p><input class="form-control" placeholder="Systolic" type="number" name="systolic" ng-model="bloodPressure.systolic"  /></p>
+  <p><button type="button" class="btn btn-info btn-block" ng-click="ubpc.addBloodPressure(bloodPressure)">Submit</button></p>
+</div>

@@ -116,7 +116,9 @@
             <div class="title">Blood Pressure</div>
             <div class="row"></div>
             <div class="row">
-              <div class="col-md-6 card-button card-button-left"><i class="fa fa-plus"></i>Add</div>
+              <div popover-is-open="ubpc.popoverActive" ng-class="{'active': ubpc.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
+                   popover-title="Add new blood pressure!" popover-placement="bottom" uib-popover-template="'views/addbloodpressuretooltip.html'" >
+                <i class="fa fa-plus"></i>Add</div>
               <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
             </div>
           </div><!--/.info-box-->

@@ -24,5 +24,19 @@ angular.module('healthmonApp')
       });
     }
 
+    function addBloodPressure(bloodPressure) {
+      var query = UserBloodPressure.save(bloodPressure).$promise;
+      self.promises.push(query);
+      query.then(function(response) {
+        self.bloodPressures.push(response);
+        self.lastBloodPressure = response;
+        self.popoverActive = false;
+      }, function(error) {
+        self.addBloodPressureError = error.data.message;
+      });
+    }
+
     loadBloodPressures();
+
+    self.addBloodPressure = addBloodPressure;
   });

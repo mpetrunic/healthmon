@@ -13,13 +13,13 @@ import java.io.Serializable;
 public class StoreBloodPressureRequest implements Serializable {
 
     @NotNull
-    @Min(40)
-    @Max(100)
+    @Min(70)
+    @Max(190)
     private Integer diastolic;
 
     @NotNull
-    @Min(70)
-    @Max(190)
+    @Min(40)
+    @Max(100)
     private Integer systolic;
 
     public Integer getDiastolic() {
