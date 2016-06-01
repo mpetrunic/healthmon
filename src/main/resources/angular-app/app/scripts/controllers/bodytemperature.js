@@ -12,6 +12,7 @@ angular.module('healthmonApp')
     var self = this;
     self.promises = [];
     self.bodyTemperatures = [];
+    self.popoverActive = false;
 
     function loadBodyTemperatures() {
       var query = BodyTemperature.query().$promise;
@@ -22,5 +23,19 @@ angular.module('healthmonApp')
       });
     }
 
+    function addTemperature(temperature) {
+      var query = BodyTemperature.save({temperature: temperature}).$promise;
+      self.promises.push(query);
+      query.then(function(response) {
+        self.bodyTemperatures.push(response);
+        self.lastBodyTemperature = response;
+        self.popoverActive = false;
+      }, function(error) {
+        self.addTemperatureError = error.data.message;
+      });
+    }
+
     loadBodyTemperatures();
+
+    self.addTemperature = addTemperature;
   });
