@@ -14,7 +14,6 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
-import org.jooq.Identity;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
@@ -34,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Activity extends TableImpl<ActivityRecord> {
 
-	private static final long serialVersionUID = 864057979;
+	private static final long serialVersionUID = -1542045244;
 
 	/**
 	 * The reference instance of <code>healthmon.activity</code>
@@ -50,9 +49,9 @@ public class Activity extends TableImpl<ActivityRecord> {
 	}
 
 	/**
-	 * The column <code>healthmon.activity.id</code>.
+	 * The column <code>healthmon.activity.activity_id</code>.
 	 */
-	public final TableField<ActivityRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ActivityRecord, Integer> ACTIVITY_ID = createField("activity_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>healthmon.activity.name</code>.
@@ -84,14 +83,6 @@ public class Activity extends TableImpl<ActivityRecord> {
 
 	private Activity(String alias, Table<ActivityRecord> aliased, Field<?>[] parameters) {
 		super(alias, Healthmon.HEALTHMON, aliased, parameters, "");
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Identity<ActivityRecord, Integer> getIdentity() {
-		return Keys.IDENTITY_ACTIVITY;
 	}
 
 	/**

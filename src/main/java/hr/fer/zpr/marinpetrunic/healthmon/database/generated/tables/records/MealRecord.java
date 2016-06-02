@@ -28,20 +28,20 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MealRecord extends UpdatableRecordImpl<MealRecord> implements Record5<Integer, String, Integer, Double, Double> {
 
-	private static final long serialVersionUID = -92398338;
+	private static final long serialVersionUID = -1179795880;
 
 	/**
-	 * Setter for <code>healthmon.meal.id</code>.
+	 * Setter for <code>healthmon.meal.meal_id</code>.
 	 */
-	public MealRecord setId(Integer value) {
+	public MealRecord setMealId(Integer value) {
 		setValue(0, value);
 		return this;
 	}
 
 	/**
-	 * Getter for <code>healthmon.meal.id</code>.
+	 * Getter for <code>healthmon.meal.meal_id</code>.
 	 */
-	public Integer getId() {
+	public Integer getMealId() {
 		return (Integer) getValue(0);
 	}
 
@@ -142,7 +142,7 @@ public class MealRecord extends UpdatableRecordImpl<MealRecord> implements Recor
 	 */
 	@Override
 	public Field<Integer> field1() {
-		return Meal.MEAL.ID;
+		return Meal.MEAL.MEAL_ID;
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class MealRecord extends UpdatableRecordImpl<MealRecord> implements Recor
 	 */
 	@Override
 	public Integer value1() {
-		return getId();
+		return getMealId();
 	}
 
 	/**
@@ -222,7 +222,7 @@ public class MealRecord extends UpdatableRecordImpl<MealRecord> implements Recor
 	 */
 	@Override
 	public MealRecord value1(Integer value) {
-		setId(value);
+		setMealId(value);
 		return this;
 	}
 
@@ -289,10 +289,10 @@ public class MealRecord extends UpdatableRecordImpl<MealRecord> implements Recor
 	/**
 	 * Create a detached, initialised MealRecord
 	 */
-	public MealRecord(Integer id, String name, Integer calories, Double fat, Double proteins) {
+	public MealRecord(Integer mealId, String name, Integer calories, Double fat, Double proteins) {
 		super(Meal.MEAL);
 
-		setValue(0, id);
+		setValue(0, mealId);
 		setValue(1, name);
 		setValue(2, calories);
 		setValue(3, fat);

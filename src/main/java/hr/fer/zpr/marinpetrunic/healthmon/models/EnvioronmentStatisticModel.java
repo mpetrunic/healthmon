@@ -1,5 +1,7 @@
 package hr.fer.zpr.marinpetrunic.healthmon.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -8,7 +10,8 @@ import java.time.LocalDateTime;
  */
 public class EnvioronmentStatisticModel implements Serializable {
 
-    private Integer id;
+    @JsonProperty(value = "id")
+    private Integer environmentStatisticId;
 
     private Integer locationId;
 
@@ -20,12 +23,12 @@ public class EnvioronmentStatisticModel implements Serializable {
 
     private LocalDateTime insertDate;
 
-    public Integer getId() {
-        return id;
+    public Integer getEnvironmentStatisticId() {
+        return environmentStatisticId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEnvironmentStatisticId(Integer environmentStatisticId) {
+        this.environmentStatisticId = environmentStatisticId;
     }
 
     public Integer getLocationId() {

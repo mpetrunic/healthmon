@@ -1,5 +1,7 @@
 package hr.fer.zpr.marinpetrunic.healthmon.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -16,23 +18,24 @@ public class ActivityModel implements Serializable {
     }
 
     public ActivityModel(Integer id, String name, Float averageCaloriesPerMin) {
-        this.id = id;
+        this.activityId = id;
         this.name = name;
         this.averageCaloriesPerMin = averageCaloriesPerMin;
     }
 
-    private Integer id;
+    @JsonProperty(value = "id")
+    private Integer activityId;
 
     private String name;
 
     private Float averageCaloriesPerMin;
 
     public Integer getId() {
-        return id;
+        return activityId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.activityId = id;
     }
 
     public String getName() {

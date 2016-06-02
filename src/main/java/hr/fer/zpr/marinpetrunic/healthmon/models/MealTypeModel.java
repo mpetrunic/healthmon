@@ -1,5 +1,7 @@
 package hr.fer.zpr.marinpetrunic.healthmon.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -10,8 +12,8 @@ public class MealTypeModel implements Serializable {
     public MealTypeModel() {
     }
 
-    public MealTypeModel(Integer id, String name) {
-        this.id = id;
+    public MealTypeModel(Integer mealTypeId, String name) {
+        this.mealTypeId = mealTypeId;
         this.name = name;
     }
 
@@ -19,16 +21,17 @@ public class MealTypeModel implements Serializable {
         this.name = name;
     }
 
-    private Integer id;
+    @JsonProperty(value = "id")
+    private Integer mealTypeId;
 
     private String name;
 
-    public Integer getId() {
-        return id;
+    public Integer getMealTypeId() {
+        return mealTypeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMealTypeId(Integer mealTypeId) {
+        this.mealTypeId = mealTypeId;
     }
 
     public String getName() {

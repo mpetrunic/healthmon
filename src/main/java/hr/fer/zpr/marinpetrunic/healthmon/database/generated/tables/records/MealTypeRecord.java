@@ -28,20 +28,20 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MealTypeRecord extends UpdatableRecordImpl<MealTypeRecord> implements Record2<Integer, String> {
 
-	private static final long serialVersionUID = 2069673389;
+	private static final long serialVersionUID = -1516214224;
 
 	/**
-	 * Setter for <code>healthmon.meal_type.id</code>.
+	 * Setter for <code>healthmon.meal_type.meal_type_id</code>.
 	 */
-	public MealTypeRecord setId(Integer value) {
+	public MealTypeRecord setMealTypeId(Integer value) {
 		setValue(0, value);
 		return this;
 	}
 
 	/**
-	 * Getter for <code>healthmon.meal_type.id</code>.
+	 * Getter for <code>healthmon.meal_type.meal_type_id</code>.
 	 */
-	public Integer getId() {
+	public Integer getMealTypeId() {
 		return (Integer) getValue(0);
 	}
 
@@ -97,7 +97,7 @@ public class MealTypeRecord extends UpdatableRecordImpl<MealTypeRecord> implemen
 	 */
 	@Override
 	public Field<Integer> field1() {
-		return MealType.MEAL_TYPE.ID;
+		return MealType.MEAL_TYPE.MEAL_TYPE_ID;
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class MealTypeRecord extends UpdatableRecordImpl<MealTypeRecord> implemen
 	 */
 	@Override
 	public Integer value1() {
-		return getId();
+		return getMealTypeId();
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class MealTypeRecord extends UpdatableRecordImpl<MealTypeRecord> implemen
 	 */
 	@Override
 	public MealTypeRecord value1(Integer value) {
-		setId(value);
+		setMealTypeId(value);
 		return this;
 	}
 
@@ -166,10 +166,10 @@ public class MealTypeRecord extends UpdatableRecordImpl<MealTypeRecord> implemen
 	/**
 	 * Create a detached, initialised MealTypeRecord
 	 */
-	public MealTypeRecord(Integer id, String name) {
+	public MealTypeRecord(Integer mealTypeId, String name) {
 		super(MealType.MEAL_TYPE);
 
-		setValue(0, id);
+		setValue(0, mealTypeId);
 		setValue(1, name);
 	}
 }

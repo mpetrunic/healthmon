@@ -37,7 +37,7 @@ public class EnvioronmentStatisticRepository extends BaseRepository implements I
         record.from(model);
         dsl.attach(record);
         record.store();
-        model.setId(record.getId());
+        model.setEnvironmentStatisticId(record.getEnvironmentStatisticId());
         return model;
     }
 }

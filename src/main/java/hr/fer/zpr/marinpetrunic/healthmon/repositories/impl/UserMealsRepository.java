@@ -7,12 +7,10 @@ import hr.fer.zpr.marinpetrunic.healthmon.repositories.BaseRepository;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IMealRepository;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IMealTypeRepository;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IUserMealRepository;
-import javafx.fxml.Initializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -98,7 +96,7 @@ public class UserMealsRepository extends BaseRepository implements IUserMealRepo
 
     private MealTypeModel getMealType(Integer mealTypeId) {
         for(MealTypeModel type : mealtypes) {
-            if(type.getId().equals(mealTypeId)) return type;
+            if(type.getMealTypeId().equals(mealTypeId)) return type;
         }
         return null;
     }

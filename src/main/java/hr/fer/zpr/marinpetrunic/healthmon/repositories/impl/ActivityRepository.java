@@ -26,7 +26,7 @@ public class ActivityRepository extends BaseRepository implements IActivityRepos
 
     @Override
     public ActivityModel get(Integer id) {
-        ActivityRecord record = dsl.selectFrom(ACTIVITY).where(ACTIVITY.ID.equal(id)).fetchAny();
+        ActivityRecord record = dsl.selectFrom(ACTIVITY).where(ACTIVITY.ACTIVITY_ID.equal(id)).fetchAny();
         if(record != null) {
             return record.into(ActivityModel.class);
         }
@@ -39,7 +39,7 @@ public class ActivityRepository extends BaseRepository implements IActivityRepos
         record.from(model);
         dsl.attach(record);
         record.store();
-        model.setId(record.getId());
+        model.setId(record.getActivityId());
         return model;
     }
 }

@@ -28,20 +28,20 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ActivityRecord extends UpdatableRecordImpl<ActivityRecord> implements Record3<Integer, String, Double> {
 
-	private static final long serialVersionUID = -1480199374;
+	private static final long serialVersionUID = 1933521896;
 
 	/**
-	 * Setter for <code>healthmon.activity.id</code>.
+	 * Setter for <code>healthmon.activity.activity_id</code>.
 	 */
-	public ActivityRecord setId(Integer value) {
+	public ActivityRecord setActivityId(Integer value) {
 		setValue(0, value);
 		return this;
 	}
 
 	/**
-	 * Getter for <code>healthmon.activity.id</code>.
+	 * Getter for <code>healthmon.activity.activity_id</code>.
 	 */
-	public Integer getId() {
+	public Integer getActivityId() {
 		return (Integer) getValue(0);
 	}
 
@@ -112,7 +112,7 @@ public class ActivityRecord extends UpdatableRecordImpl<ActivityRecord> implemen
 	 */
 	@Override
 	public Field<Integer> field1() {
-		return Activity.ACTIVITY.ID;
+		return Activity.ACTIVITY.ACTIVITY_ID;
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class ActivityRecord extends UpdatableRecordImpl<ActivityRecord> implemen
 	 */
 	@Override
 	public Integer value1() {
-		return getId();
+		return getActivityId();
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class ActivityRecord extends UpdatableRecordImpl<ActivityRecord> implemen
 	 */
 	@Override
 	public ActivityRecord value1(Integer value) {
-		setId(value);
+		setActivityId(value);
 		return this;
 	}
 
@@ -207,10 +207,10 @@ public class ActivityRecord extends UpdatableRecordImpl<ActivityRecord> implemen
 	/**
 	 * Create a detached, initialised ActivityRecord
 	 */
-	public ActivityRecord(Integer id, String name, Double averageCaloriesPerMin) {
+	public ActivityRecord(Integer activityId, String name, Double averageCaloriesPerMin) {
 		super(Activity.ACTIVITY);
 
-		setValue(0, id);
+		setValue(0, activityId);
 		setValue(1, name);
 		setValue(2, averageCaloriesPerMin);
 	}

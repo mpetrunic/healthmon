@@ -14,7 +14,6 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
-import org.jooq.Identity;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
@@ -34,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MealType extends TableImpl<MealTypeRecord> {
 
-	private static final long serialVersionUID = 979231706;
+	private static final long serialVersionUID = 408282427;
 
 	/**
 	 * The reference instance of <code>healthmon.meal_type</code>
@@ -50,9 +49,9 @@ public class MealType extends TableImpl<MealTypeRecord> {
 	}
 
 	/**
-	 * The column <code>healthmon.meal_type.id</code>.
+	 * The column <code>healthmon.meal_type.meal_type_id</code>.
 	 */
-	public final TableField<MealTypeRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<MealTypeRecord, Integer> MEAL_TYPE_ID = createField("meal_type_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>healthmon.meal_type.name</code>.
@@ -79,14 +78,6 @@ public class MealType extends TableImpl<MealTypeRecord> {
 
 	private MealType(String alias, Table<MealTypeRecord> aliased, Field<?>[] parameters) {
 		super(alias, Healthmon.HEALTHMON, aliased, parameters, "");
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Identity<MealTypeRecord, Integer> getIdentity() {
-		return Keys.IDENTITY_MEAL_TYPE;
 	}
 
 	/**

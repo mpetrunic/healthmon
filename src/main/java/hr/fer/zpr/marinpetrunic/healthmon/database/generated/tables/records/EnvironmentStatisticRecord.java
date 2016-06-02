@@ -30,20 +30,20 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EnvironmentStatisticRecord extends UpdatableRecordImpl<EnvironmentStatisticRecord> implements Record6<Integer, Double, Double, Integer, Timestamp, Integer> {
 
-	private static final long serialVersionUID = 262390953;
+	private static final long serialVersionUID = -120614706;
 
 	/**
-	 * Setter for <code>healthmon.environment_statistic.id</code>.
+	 * Setter for <code>healthmon.environment_statistic.environment_statistic_id</code>.
 	 */
-	public EnvironmentStatisticRecord setId(Integer value) {
+	public EnvironmentStatisticRecord setEnvironmentStatisticId(Integer value) {
 		setValue(0, value);
 		return this;
 	}
 
 	/**
-	 * Getter for <code>healthmon.environment_statistic.id</code>.
+	 * Getter for <code>healthmon.environment_statistic.environment_statistic_id</code>.
 	 */
-	public Integer getId() {
+	public Integer getEnvironmentStatisticId() {
 		return (Integer) getValue(0);
 	}
 
@@ -159,7 +159,7 @@ public class EnvironmentStatisticRecord extends UpdatableRecordImpl<EnvironmentS
 	 */
 	@Override
 	public Field<Integer> field1() {
-		return EnvironmentStatistic.ENVIRONMENT_STATISTIC.ID;
+		return EnvironmentStatistic.ENVIRONMENT_STATISTIC.ENVIRONMENT_STATISTIC_ID;
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class EnvironmentStatisticRecord extends UpdatableRecordImpl<EnvironmentS
 	 */
 	@Override
 	public Integer value1() {
-		return getId();
+		return getEnvironmentStatisticId();
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class EnvironmentStatisticRecord extends UpdatableRecordImpl<EnvironmentS
 	 */
 	@Override
 	public EnvironmentStatisticRecord value1(Integer value) {
-		setId(value);
+		setEnvironmentStatisticId(value);
 		return this;
 	}
 
@@ -332,10 +332,10 @@ public class EnvironmentStatisticRecord extends UpdatableRecordImpl<EnvironmentS
 	/**
 	 * Create a detached, initialised EnvironmentStatisticRecord
 	 */
-	public EnvironmentStatisticRecord(Integer id, Double temperature, Double humidity, Integer airPressure, Timestamp insertDate, Integer locationId) {
+	public EnvironmentStatisticRecord(Integer environmentStatisticId, Double temperature, Double humidity, Integer airPressure, Timestamp insertDate, Integer locationId) {
 		super(EnvironmentStatistic.ENVIRONMENT_STATISTIC);
 
-		setValue(0, id);
+		setValue(0, environmentStatisticId);
 		setValue(1, temperature);
 		setValue(2, humidity);
 		setValue(3, airPressure);

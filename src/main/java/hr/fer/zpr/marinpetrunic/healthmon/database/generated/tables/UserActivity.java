@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserActivity extends TableImpl<UserActivityRecord> {
 
-	private static final long serialVersionUID = 43355131;
+	private static final long serialVersionUID = 816397082;
 
 	/**
 	 * The reference instance of <code>healthmon.user_activity</code>
@@ -132,7 +132,7 @@ public class UserActivity extends TableImpl<UserActivityRecord> {
 	 */
 	@Override
 	public List<ForeignKey<UserActivityRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<UserActivityRecord, ?>>asList(Keys.FK_USER_ACTIVITY_USER1, Keys.FK_USER_ACTIVITY_ACTIVITY1);
+		return Arrays.<ForeignKey<UserActivityRecord, ?>>asList(Keys.FK_USER_ACTIVITY_USER1, Keys.FK_USER_ACTIVITY_ACTIVITY2);
 	}
 
 	/**

@@ -15,7 +15,6 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserActivity
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserBloodPressure;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserHeartRate;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserMeal;
-import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserRole;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserTemperature;
 import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.UserWeight;
 
@@ -42,7 +41,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Healthmon extends SchemaImpl {
 
-	private static final long serialVersionUID = -1820115141;
+	private static final long serialVersionUID = -1455202533;
 
 	/**
 	 * The reference instance of <code>healthmon</code>
@@ -76,7 +75,6 @@ public class Healthmon extends SchemaImpl {
 			UserBloodPressure.USER_BLOOD_PRESSURE,
 			UserHeartRate.USER_HEART_RATE,
 			UserMeal.USER_MEAL,
-			UserRole.USER_ROLE,
 			UserTemperature.USER_TEMPERATURE,
 			UserWeight.USER_WEIGHT);
 	}

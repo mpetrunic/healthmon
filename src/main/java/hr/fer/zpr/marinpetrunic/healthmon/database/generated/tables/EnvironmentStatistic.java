@@ -16,7 +16,6 @@ import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
@@ -36,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EnvironmentStatistic extends TableImpl<EnvironmentStatisticRecord> {
 
-	private static final long serialVersionUID = 1002189664;
+	private static final long serialVersionUID = 1584926057;
 
 	/**
 	 * The reference instance of <code>healthmon.environment_statistic</code>
@@ -52,9 +51,9 @@ public class EnvironmentStatistic extends TableImpl<EnvironmentStatisticRecord> 
 	}
 
 	/**
-	 * The column <code>healthmon.environment_statistic.id</code>.
+	 * The column <code>healthmon.environment_statistic.environment_statistic_id</code>.
 	 */
-	public final TableField<EnvironmentStatisticRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<EnvironmentStatisticRecord, Integer> ENVIRONMENT_STATISTIC_ID = createField("environment_statistic_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>healthmon.environment_statistic.temperature</code>.
@@ -101,14 +100,6 @@ public class EnvironmentStatistic extends TableImpl<EnvironmentStatisticRecord> 
 
 	private EnvironmentStatistic(String alias, Table<EnvironmentStatisticRecord> aliased, Field<?>[] parameters) {
 		super(alias, Healthmon.HEALTHMON, aliased, parameters, "");
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Identity<EnvironmentStatisticRecord, Integer> getIdentity() {
-		return Keys.IDENTITY_ENVIRONMENT_STATISTIC;
 	}
 
 	/**

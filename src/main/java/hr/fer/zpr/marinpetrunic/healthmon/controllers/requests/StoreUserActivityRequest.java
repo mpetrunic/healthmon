@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class StoreUserActivityRequest implements Serializable {
 
     @NotNull
-    @Exists(column = "id", table = "activity")
+    @Exists(column = "activity_id", table = "activity")
     private Integer activityId;
 
     @NotNull

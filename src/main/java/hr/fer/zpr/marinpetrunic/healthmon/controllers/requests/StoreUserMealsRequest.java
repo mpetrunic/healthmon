@@ -13,11 +13,11 @@ import java.io.Serializable;
 public class StoreUserMealsRequest implements Serializable{
 
     @NotNull
-    @Exists(column = "id", table = "meal_type")
+    @Exists(column = "meal_type_id", table = "meal_type")
     private Integer mealTypeId;
 
     @NotNull
-    @Exists(column = "id", table = "meal")
+    @Exists(column = "meal_id", table = "meal")
     private Integer mealId;
 
     @NotNull

@@ -5,8 +5,6 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.Meal
 import hr.fer.zpr.marinpetrunic.healthmon.models.MealTypeModel;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.BaseRepository;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IMealTypeRepository;
-import org.jooq.DSLContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class MealTypeRepository extends BaseRepository implements IMealTypeRepos
 
     @Override
     public MealTypeModel get(Integer id) {
-        MealTypeRecord record = dsl.selectFrom(MEAL_TYPE).where(MEAL_TYPE.ID.equal(id)).fetchAny();
+        MealTypeRecord record = dsl.selectFrom(MEAL_TYPE).where(MEAL_TYPE.MEAL_TYPE_ID.equal(id)).fetchAny();
         if(record != null) {
             return record.into(MealTypeModel.class);
         }
@@ -48,7 +46,7 @@ public class MealTypeRepository extends BaseRepository implements IMealTypeRepos
         record.from(model);
         dsl.attach(record);
         record.store();
-        model.setId(record.getId());
+        model.setMealTypeId(record.getMealTypeId());
         return model;
     }
 }

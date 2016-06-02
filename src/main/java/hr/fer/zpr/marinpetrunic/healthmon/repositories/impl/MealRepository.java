@@ -5,8 +5,6 @@ import hr.fer.zpr.marinpetrunic.healthmon.database.generated.tables.records.Meal
 import hr.fer.zpr.marinpetrunic.healthmon.models.MealModel;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.BaseRepository;
 import hr.fer.zpr.marinpetrunic.healthmon.repositories.IMealRepository;
-import org.jooq.DSLContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,7 +24,7 @@ public class MealRepository extends BaseRepository implements IMealRepository {
 
     @Override
     public MealModel get(Integer id) {
-        MealRecord record = dsl.selectFrom(MEAL).where(MEAL.ID.equal(id)).fetchAny();
+        MealRecord record = dsl.selectFrom(MEAL).where(MEAL.MEAL_ID.equal(id)).fetchAny();
         if(record != null) {
             return record.into(MealModel.class);
         }
@@ -39,7 +37,7 @@ public class MealRepository extends BaseRepository implements IMealRepository {
         record.from(model);
         dsl.attach(record);
         record.store();
-        model.setId(record.getId());
+        model.setMealId(record.getMealId());
         return model;
     }
 
