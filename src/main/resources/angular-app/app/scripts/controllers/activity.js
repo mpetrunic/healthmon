@@ -8,7 +8,7 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('ActivityCtrl', function (Activity, UserMeal, $filter, ActivityType) {
+  .controller('ActivityCtrl', function (Activity, UserMeal, $filter, ActivityType, $scope) {
     var self = this;
     var baseCalories = -2000;
 
@@ -88,6 +88,9 @@ angular.module('healthmonApp')
     loadActivities();
     loadMeals();
     loadActivityTypes();
+    $scope.$on('UserMealAddedEvent', function() {
+      loadMeals();
+    });
 
     self.calculateCalories = calculateTotalCalories;
     self.addUserActivity = addUserActivity;

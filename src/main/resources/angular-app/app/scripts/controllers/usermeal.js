@@ -8,7 +8,7 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('UserMealCtrl', function (UserMeal, Meal, MealType, $filter, $scope) {
+  .controller('UserMealCtrl', function (UserMeal, Meal, MealType, $filter, $scope, $rootScope) {
     var self = this;
     self.promises = [];
     self.mealTypes = [];
@@ -89,15 +89,13 @@ angular.module('healthmonApp')
     }
 
     function storeUserMeal(meal) {
-      console.log(meal);
       var query = UserMeal.save(meal).$promise;
       self.promises.push(query);
       query.then(function(response) {
-        console.log(response);
         Meal.get({id: response.mealId}, function(meal) {
           $scope.todayMeals.push(formatMealModel(meal, getMealTypeName(response.mealTypeId), response.quantity));
           $scope.todayMeals = $filter('orderBy')($scope.todayMeals, '+type');
-          $scope.meal = {};
+          $rootScope.$broadcast('UserMealAddedEvent', meal);
         });
       }, function(error) {
         console.log(error);
