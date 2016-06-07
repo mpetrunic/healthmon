@@ -8,11 +8,13 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('UserWeightCtrl', function ($rootScope, UserWeight) {
+  .controller('UserWeightCtrl', function ($rootScope, UserWeight, $filter, $scope, ChartLabels) {
     var self = this;
+    var series = 'Weight';
     self.weighs = [];
     self.promises = [];
     self.popoverActive = false;
+    self.chartActive = false;
 
     function loadUserWeights() {
       var query = UserWeight.query().$promise;
@@ -35,7 +37,39 @@ angular.module('healthmonApp')
       });
     }
 
+    function loadDataToChart() {
+      var seriesData = [];
+      angular.forEach(ChartLabels.list, function(date, index) {
+        var found = false;
+        angular.forEach(self.weighs, function(value) {
+          var inserted = $filter('date') (new Date(value.insertDate), 'dd.MM');
+          if(inserted === date) {
+            seriesData.insert(index, value.weight);
+            found = true;
+          }
+        });
+        if(!found) {
+          seriesData.insert(index, undefined);
+        }
+      });
+      self.chartActive = true;
+      $rootScope.$broadcast('AddChartData', series, seriesData);
+    }
+
+    function removeDataFromChart() {
+      self.chartActive = false;
+      $rootScope.$broadcast('RemoveChartData', series);
+    }
+
+    $scope.$watchCollection('uwc.weighs',function () {
+      if(self.chartActive) {
+        loadDataToChart();
+      }
+    });
+
     loadUserWeights();
 
     self.addNewWeight = addNewWeight;
+    self.removeChartData = removeDataFromChart;
+    self.addChartData = loadDataToChart;
   });

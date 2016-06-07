@@ -8,12 +8,13 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('UserBloodPressureCtrl', function (UserBloodPressure) {
+  .controller('UserBloodPressureCtrl', function (UserBloodPressure, $filter, $scope, ChartLabels, $rootScope) {
     var self = this;
-
+    var series = 'Blood Pressure';
     self.promises = [];
     self.bloodPressures = [];
     self.lastBloodPressure = null;
+    self.chartActive = false;
 
     function loadBloodPressures() {
       var query = UserBloodPressure.query().$promise;
@@ -36,7 +37,39 @@ angular.module('healthmonApp')
       });
     }
 
+    function loadDataToChart() {
+      var seriesData = [];
+      angular.forEach(ChartLabels.list, function(date, index) {
+        var found = false;
+        angular.forEach(self.bloodPressures, function(value) {
+          var inserted = $filter('date') (new Date(value.insertDate), 'dd.MM');
+          if(inserted === date) {
+            seriesData.insert(index, value.diastolic);
+            found = true;
+          }
+        });
+        if(!found) {
+          seriesData.insert(index, undefined);
+        }
+      });
+      self.chartActive = true;
+      $rootScope.$broadcast('AddChartData', series, seriesData);
+    }
+
+    function removeDataFromChart() {
+      self.chartActive = false;
+      $rootScope.$broadcast('RemoveChartData', series);
+    }
+
+    $scope.$watchCollection('ubpc.bloodPressures',function () {
+      if(self.chartActive) {
+        loadDataToChart();
+      }
+    });
+
     loadBloodPressures();
 
     self.addBloodPressure = addBloodPressure;
+    self.removeChartData = removeDataFromChart;
+    self.addChartData = loadDataToChart;
   });

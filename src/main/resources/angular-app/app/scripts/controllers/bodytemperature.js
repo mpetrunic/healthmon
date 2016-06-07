@@ -8,11 +8,13 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('BodyTemperatureCtrl', function (BodyTemperature) {
+  .controller('BodyTemperatureCtrl', function (BodyTemperature, $filter, $scope, ChartLabels, $rootScope) {
     var self = this;
+    var series = 'Body Temperature';
     self.promises = [];
     self.bodyTemperatures = [];
     self.popoverActive = false;
+    self.chartActive = false;
 
     function loadBodyTemperatures() {
       var query = BodyTemperature.query().$promise;
@@ -35,7 +37,39 @@ angular.module('healthmonApp')
       });
     }
 
+    function loadDataToChart() {
+      var seriesData = [];
+      angular.forEach(ChartLabels.list, function(date, index) {
+        var found = false;
+        angular.forEach(self.bodyTemperatures, function(value) {
+          var inserted = $filter('date') (new Date(value.insertDate), 'dd.MM');
+          if(inserted === date) {
+            seriesData.insert(index, value.temperature);
+            found = true;
+          }
+        });
+        if(!found) {
+          seriesData.insert(index, undefined);
+        }
+      });
+      self.chartActive = true;
+      $rootScope.$broadcast('AddChartData', series, seriesData);
+    }
+
+    function removeDataFromChart() {
+      self.chartActive = false;
+      $rootScope.$broadcast('RemoveChartData', series);
+    }
+
+    $scope.$watchCollection('btc.bodyTemperatures',function () {
+      if(self.chartActive) {
+        loadDataToChart();
+      }
+    });
+
     loadBodyTemperatures();
 
     self.addTemperature = addTemperature;
+    self.removeChartData = removeDataFromChart;
+    self.addChartData = loadDataToChart;
   });

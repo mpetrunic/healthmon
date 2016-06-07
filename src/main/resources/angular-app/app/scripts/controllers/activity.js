@@ -8,15 +8,17 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('ActivityCtrl', function (Activity, UserMeal, $filter, ActivityType, $scope) {
+  .controller('ActivityCtrl', function (Activity, UserMeal, ActivityType, $filter, $scope, ChartLabels, $rootScope) {
     var self = this;
     var baseCalories = -2000;
+    var series = 'Activity';
 
     self.promises = [];
     self.activities = [];
     self.userMeals = [];
     self.activityTypes = [];
     self.popoverActive = false;
+    self.chartActive = false;
 
     function getActivitiesCalories(date) {
       var cal = 0;
@@ -48,6 +50,10 @@ angular.module('healthmonApp')
 
     function calculateTotalCalories() {
       return baseCalories - getActivitiesCalories(new Date()) + getMealCalories(new Date());
+    }
+
+    function calculateTotalCaloriesByDate(date) {
+      return baseCalories - getActivitiesCalories(date) + getMealCalories(date);
     }
 
     function loadActivities() {
@@ -85,13 +91,48 @@ angular.module('healthmonApp')
       });
     }
 
+    function loadDataToChart() {
+      var seriesData = [];
+      angular.forEach(ChartLabels.list, function(date, index) {
+        var rDate = new Date();
+        console.log(date);
+        rDate.setDate(date.split('.')[0]);
+        rDate.setMonth(date.split('.')[1]-1);
+        console.log(date.split('.')[1]);
+        console.log($filter('date')(rDate, 'dd.MM.yyyy.'));
+        seriesData.insert(index, calculateTotalCaloriesByDate(rDate));
+      });
+      self.chartActive = true;
+      $rootScope.$broadcast('AddChartData', series, seriesData);
+    }
+
+    function removeDataFromChart() {
+      self.chartActive = false;
+      $rootScope.$broadcast('RemoveChartData', series);
+    }
+
+    $scope.$watchCollection('ac.userMeals',function () {
+      if(self.chartActive) {
+        loadDataToChart();
+      }
+    });
+
+    $scope.$watchCollection('ac.activities',function () {
+      if(self.chartActive) {
+        loadDataToChart();
+      }
+    });
+
     loadActivities();
     loadMeals();
     loadActivityTypes();
+
     $scope.$on('UserMealAddedEvent', function() {
       loadMeals();
     });
 
     self.calculateCalories = calculateTotalCalories;
     self.addUserActivity = addUserActivity;
+    self.removeChartData = removeDataFromChart;
+    self.addChartData = loadDataToChart;
   });

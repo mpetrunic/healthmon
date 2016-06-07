@@ -8,11 +8,13 @@
  * Controller of the healthmonApp
  */
 angular.module('healthmonApp')
-  .controller('WeatherCtrl', function (Weather, $rootScope) {
+  .controller('WeatherCtrl', function (Weather, $filter, $scope, ChartLabels, $rootScope) {
     var self = this;
+    var series = 'Weather';
     self.promises = [];
     self.weatherRating = 0;
     self.weatherStatistics = [];
+    self.popoverActive = false;self.chartActive = true;
 
     function calculateTemperatureRating(temperature) {
       if(temperature < 0 || temperature > 45) {
@@ -76,6 +78,35 @@ angular.module('healthmonApp')
       });
     }
 
+    function loadDataToChart() {
+      var seriesData = [];
+      angular.forEach(ChartLabels.list, function(date, index) {
+        var found = false;
+        angular.forEach(self.weatherStatistics, function(value) {
+          var inserted = $filter('date') (new Date(value.insertDate), 'dd.MM');
+          if(inserted === date) {
+            seriesData.insert(index, calculateWeatherRating(value));
+            found = true;
+          }
+        });
+        if(!found) {
+          seriesData.insert(index, undefined);
+        }
+      });
+      self.chartActive = true;
+      $rootScope.$broadcast('AddChartData', series, seriesData);
+    }
+
+    function removeDataFromChart() {
+      self.chartActive = false;
+      $rootScope.$broadcast('RemoveChartData', series);
+    }
+
+    $scope.$watchCollection('wc.weatherStatistics',function () {
+      if(self.chartActive) {
+        loadDataToChart();
+      }
+    });
 
 
     //loading weather data
@@ -89,4 +120,7 @@ angular.module('healthmonApp')
         loadWeatherStatistic($rootScope.authenticatedUser.locationId);
       });
     }
+
+    self.removeChartData = removeDataFromChart;
+    self.addChartData = loadDataToChart;
   });

@@ -71,7 +71,8 @@
                      popover-title="Add new weight!" popover-placement="bottom" uib-popover-template="'views/addweightformtooltip.html'" >
                 <i class="fa fa-plus"></i>Add
               </div>
-              <div class="col-md-6 card-button card-button-right active"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+              <div ng-if="uwc.chartActive" class="col-md-6 card-button card-button-right active" ng-click="uwc.removeChartData()"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+              <div ng-if="!uwc.chartActive" class="col-md-6 card-button card-button-right" ng-click="uwc.addChartData()"><i class="fa fa-bar-chart"></i>Show Graph</div>
             </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
@@ -87,7 +88,8 @@
               <div popover-is-open="uhrc.popoverActive" ng-class="{'active': uhrc.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
                    popover-title="Add new heart rate!" popover-placement="bottom" uib-popover-template="'views/addheartratetooltip.html'" >
                 <i class="fa fa-plus"></i>Add</div>
-              <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+              <div ng-if="uhrc.chartActive" class="col-md-6 card-button card-button-right active" ng-click="uhrc.removeChartData()"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+              <div ng-if="!uhrc.chartActive" class="col-md-6 card-button card-button-right" ng-click="uhrc.addChartData()"><i class="fa fa-bar-chart"></i>Show Graph</div>
             </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
@@ -103,7 +105,8 @@
               <div popover-is-open="btc.popoverActive" ng-class="{'active': btc.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
                    popover-title="Add new temperature!" popover-placement="bottom" uib-popover-template="'views/addtemperaturetooltip.html'" >
                 <i class="fa fa-plus"></i>Add</div>
-              <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+              <div ng-if="btc.chartActive" class="col-md-6 card-button card-button-right active" ng-click="btc.removeChartData()"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+              <div ng-if="!btc.chartActive" class="col-md-6 card-button card-button-right" ng-click="btc.addChartData()"><i class="fa fa-bar-chart"></i>Show Graph</div>
             </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
@@ -119,7 +122,8 @@
               <div popover-is-open="ubpc.popoverActive" ng-class="{'active': ubpc.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
                    popover-title="Add new blood pressure!" popover-placement="bottom" uib-popover-template="'views/addbloodpressuretooltip.html'" >
                 <i class="fa fa-plus"></i>Add</div>
-              <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+              <div ng-if="ubpc.chartActive" class="col-md-6 card-button card-button-right active" ng-click="ubpc.removeChartData()"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+              <div ng-if="!ubpc.chartActive" class="col-md-6 card-button card-button-right" ng-click="ubpc.addChartData()"><i class="fa fa-bar-chart"></i>Show Graph</div>
             </div>
           </div><!--/.info-box-->
         </div><!--/.col-->
@@ -128,7 +132,7 @@
 
       <div class="row">
         <div class="col-lg-9 col-md-12" ng-controller="UserStatsChartCtrl as uscc">
-          <canvas height="{{uscc.chartHeight}}" chart-options="uscc.options" id="user-stats" class="chart chart-line"
+          <canvas ng-style="{ 'height' : chartHeight }" chart-options="uscc.options" id="user-stats" class="chart chart-line"
                   chart-colours="uscc.colours" chart-data="uscc.data"
                   chart-labels="uscc.labels"
                   chart-legend="true" chart-series="uscc.series"></canvas>
@@ -144,7 +148,8 @@
                 <div class="row"></div>
                 <div class="row">
                   <div class="col-md-6 card-button card-button-left"></div>
-                  <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+                  <div ng-if="wc.chartActive" class="col-md-6 card-button card-button-right active" ng-click="wc.removeChartData()"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+                  <div ng-if="!wc.chartActive" class="col-md-6 card-button card-button-right" ng-click="wc.addChartData()"><i class="fa fa-bar-chart"></i>Show Graph</div>
                 </div>
               </div><!--/.info-box-->
             </div><!--/.col-->
@@ -160,7 +165,8 @@
                   <div popover-is-open="ac.popoverActive" ng-class="{'active': ac.popoverActive}" popover-trigger="click" class="col-md-6 card-button card-button-left"
                        popover-title="Add new activity!" popover-placement="bottom" uib-popover-template="'views/adduseractivity.html'" >
                     <i class="fa fa-plus"></i>Add</div>
-                  <div class="col-md-6 card-button card-button-right"><i class="fa fa-bar-chart"></i>Show Graph</div>
+                  <div ng-if="ac.chartActive" class="col-md-6 card-button card-button-right active" ng-click="ac.removeChartData()"><i class="fa fa-bar-chart"></i>Hide Graph</div>
+                  <div ng-if="!ac.chartActive" class="col-md-6 card-button card-button-right" ng-click="ac.addChartData()"><i class="fa fa-bar-chart"></i>Show Graph</div>
                 </div>
               </div><!--/.info-box-->
             </div><!--/.col-->
